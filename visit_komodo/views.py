@@ -29,7 +29,7 @@ def login_view(request):
             }
             return render(request, "visit_komodo/login.html", context)
     else:
-        return render(request, "visit_komodo/login.htm")
+        return render(request, "visit_komodo/login.html")
 
 def logout_view(request):
     logout(request)
