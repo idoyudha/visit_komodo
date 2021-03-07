@@ -1,18 +1,31 @@
-nav {
-    background-color: transparent;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+
+.nav-link {
+    border: 1px solid black;
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.nav-link:hover {
+    background-color: grey;
+    border: 1px solid grey;
+}
+
+.nav-item {
+    margin-left: 10px;
 }
 
 #btn-login {
-    background-color: transparent;
-    border: 2px solid black;
-    border-radius: 12px;
-    transition-duration: 0.4s;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
 }
 
 #btn-login:hover {
-    background-color: black;
-    border: 2px solid white;
-    color: white;
+    color: black;
+    background-color: white;
 }
 
 i.bi {
