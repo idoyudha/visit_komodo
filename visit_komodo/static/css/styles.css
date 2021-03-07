@@ -1,0 +1,20 @@
+nav {
+    background-color: transparent;
+}
+
+#btn-login {
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+}
+
+#btn-login:hover {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+}
+
+i.bi {
+    margin-right: 4px;
+}

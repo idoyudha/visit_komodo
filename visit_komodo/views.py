@@ -9,7 +9,7 @@ from .models import User
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, welcome to Komodo Island")
+    return render(request, "visit_komodo/index.html")
 
 def login_view(request):
     if request.method == "POST":
