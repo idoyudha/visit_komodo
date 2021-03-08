@@ -5,15 +5,17 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Destination, Event
+from .models import User, Destination, Event, Food
 
 # Create your views here.
 def index(request):
     destination = Destination.objects.all()[:5] # return first 5 objects
     event = Event.objects.all()[:5]
+    food = Food.objects.all()[:5]
     context = {
         "destination": destination,
         "event": event,
+        "food": food,
     }
     return render(request, "visit_komodo/index.html", context)
 

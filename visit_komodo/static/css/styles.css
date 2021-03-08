@@ -90,7 +90,8 @@ i.bi {
 
 .top-food, .events {
     width: 100%;
-    height: 200px;
+    max-width: 640px;
+    min-height: 160px;
 }
 
 

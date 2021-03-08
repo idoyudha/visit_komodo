@@ -43,7 +43,7 @@
       {% for data in destination %}
         <div class="col">
           <div class="card h-100">
-            <img src="{{ data.image_destination }}" class="card-img-top" alt="..." style="width: 100%;">
+            <img src="{{ data.image_destination }}" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text">{{ data.title }}</p>
             </div>
@@ -61,80 +61,22 @@
       <div class="col-sm">
         <h3 style="margin-bottom: 15px;">Food Choices</h3>
 
-        <div class="card mb-3 top-food">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Sate Bulayak</h5>
-                <p class="card-text">Sate khas Lombok, sate bulayak terbuat dari daging sapi. Bumbu kacangnya berbeda dengan yang lain, karena menggunakan santan.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        {% for data in food %}
+          <div class="card mb-3 top-food">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ data.image_food }}" alt="..."  style="width: 100%;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ data.title }}</h5>
+                  <p class="card-text">{{ data.description }}</p>
+                  <p class="card-text"><small class="text-muted">Last update {{ data.date_created | naturalday }}</small></p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="card mb-3 top-food">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Se'i atau Daging Asap</h5>
-                <p class="card-text">Se'i atau daging asap yang biasanya menggunakan dengan daging babi atau sapi tetapi sekarang biasa ditemukan juga se'i ikan lho.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3 top-food">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Nasi Kuta Raja</h5>
-                <p class="card-text">Nasi kuta raja terdiri dari jangan rarit (daging sapi berbumbu) dan sambal sebie (sambal dari cabai rawit hijau).</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3 top-food">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Ayam Taliwang</h5>
-                <p class="card-text">Dibumbui cabai merah dan keriting, bawang merah, bawang putih, kencur, dan garam, ayam taliwang dimasak dengan cara dibakar.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3 top-food">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Pelepah Manuk</h5>
-                <p class="card-text">Pelepah manuk, olahan ayam dengan santan dan bumbu yang khas semakin menggugah selera.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
 
         <div class="float-end">See all</div>
 
