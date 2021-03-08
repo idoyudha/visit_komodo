@@ -28,13 +28,30 @@ nav {
     margin-left: 10px;
 }
 
-#btn-login {
+#btn-log {
     color: white;
     background-color: black;
     border-radius: 20px;
 }
 
-#btn-login:hover {
+#btn-log:hover {
+    color: white;
+    background-color: rgb(32,32,32);
+}
+
+#btn-user {
+    color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    background-image: url("https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
+
+#btn-user:hover {
     color: white;
     background-color: rgb(32,32,32);
 }
