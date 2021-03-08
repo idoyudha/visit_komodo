@@ -27,7 +27,7 @@ class Destination(models.Model):
     description = models.CharField(max_length=500, null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
-    image_destionation = models.URLField(null=True, blank=True)
+    image_destination = models.URLField(null=True, blank=True)
     def __str__(self):
         return f"{self.title}"
 

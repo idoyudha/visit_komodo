@@ -5,11 +5,17 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User
+from .models import User, Destination, Event
 
 # Create your views here.
 def index(request):
-    return render(request, "visit_komodo/index.html")
+    destination = Destination.objects.all()[:5] # return first 5 objects
+    event = Event.objects.all()[:5]
+    context = {
+        "destination": destination,
+        "event": event,
+    }
+    return render(request, "visit_komodo/index.html", context)
 
 def login_view(request):
     if request.method == "POST":

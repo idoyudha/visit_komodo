@@ -38,10 +38,14 @@
             </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" id="btn-log" href="{% url 'logout' %}"><i class="bi bi-person-circle"></i>Log out</a>
-                </li>
-                <li class="nav-item">
-                    <button class="dropbtn" id="btn-user"></button>
+                  <div class="btn-group dropstart">
+                    <button type="button" data-bs-toggle="dropdown" id="btn-user"></button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">View Profile</a></li>
+                      <li><a class="dropdown-item" href="#">Baskets</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+                    </ul>
+                  </div>
                 </li>
             {% else %}
                 <li class="nav-item">

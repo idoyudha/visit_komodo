@@ -1,5 +1,6 @@
 {% extends "visit_komodo/layout.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block body %}
   <!-- Card Menu -->
@@ -37,52 +38,18 @@
   <!-- Popular Destination -->
   <div class="container-lg" style="margin-top: 40px;">
     <h3 style="margin-bottom: 15px;">Popular Destination Near Komodo Island</h3>
+    
     <div class="row row-cols-1 row-cols-md-5 g-6">
-      <div class="col">
-        <div class="card h-100">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Komodo Island</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      {% for data in destination %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{ data.image_destination }}" class="card-img-top" alt="..." style="width: 100%;">
+            <div class="card-body">
+              <p class="card-text">{{ data.title }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Gili Trawangan</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Padar Island</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Wae Rebo</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Rinjani Mountain</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
     <div class="float-end">See all</div>
   </div>
@@ -177,80 +144,23 @@
       <div class="col-sm">
         <h3 style="margin-bottom: 15px;">Upcoming Events</h3>
 
-        <div class="card mb-3 events">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Magnificent Komodo Festival</h5>
-                <p class="card-text">The Festival will be highlighted with a lot of various exciting activities. There will also be Cultural Carnival and Komodo Natural Adventure.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        {% for data in event %}
+          <div class="card mb-3 events">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ data.image_event }}" alt="..." style="width: 100%;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ data.title }}</h5>
+                  <p class="card-text">{{ data.description }}</p>
+                  <p class="card-text"><small class="text-muted">Last updated {{ data.date_created | naturalday }}</small></p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
 
-        <div class="card mb-3 events">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Rinjani Mountain</h5>
-                <p class="card-text">One of the best mountain in Indonesia with spectacular scenery, along with georgeus lake in the top of mountain</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3 events">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Daily Hiking to Padar Island</h5>
-                <p class="card-text">Make your way from the beach up to the island's peak with gorgeous view along the eye looked and get overwhelmed when you reach the top.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3 events">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Komodo Dragon Tour at Rinca Island</h5>
-                <p class="card-text">The islands of Komodo, Flores are special habitats that protect Indonesia’s famous Komodo Dragons, which are notable as the largest land reptile in the world.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3 events">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="..." alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Diving and Dive Safari</h5>
-                <p class="card-text">Explore the world’s best dive sites at Komodo National Park while cruising aboard our luxury 9-cabin cruise ship.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="float-end">See all</div>
       </div>
     </div>
