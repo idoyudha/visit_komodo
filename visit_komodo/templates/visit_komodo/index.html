@@ -57,7 +57,7 @@
         </div>
       {% endfor %}
     </div>
-    <div class="float-end">See all</div>
+    <div class="float-end"><a href="{% url 'destination' %}">See all</a></div>
   </div>
   
   <!-- Top List -->
@@ -84,7 +84,9 @@
           </div>
         {% endfor %}
 
-        <div class="float-end">See all</div>
+        <div class="float-end">
+          <a href="{% url 'food' %}">See all</a>
+        </div>
 
       </div>
       
@@ -109,7 +111,9 @@
           </div>
         {% endfor %}
 
-        <div class="float-end">See all</div>
+        <div class="float-end">
+          <a href="{% url 'event' %}">See all</a>
+        </div>
       </div>
     </div>
     

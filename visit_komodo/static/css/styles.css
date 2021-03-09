@@ -88,13 +88,15 @@ i.bi {
 
 /* End of Menu Choices */
 
+a {
+    text-decoration: none;
+}
+
 .top-food, .events {
     width: 100%;
     max-width: 640px;
     min-height: 160px;
 }
-
-
 
 /* Footer */
 footer {
