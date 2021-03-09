@@ -71,3 +71,11 @@ def register(request):
     else:
         return render(request, "visit_komodo/register.html")
 
+def destination(request):
+    return render(request, "visit_komodo/destination.html")
+
+def food(request):
+    return render(request, "visit_komodo/food.html")
+
+def event(request):
+    return render(request, "visit_komodo/event.html")
