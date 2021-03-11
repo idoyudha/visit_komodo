@@ -4,16 +4,6 @@
 
 {% block body %}
 
-<div class="container-lg" style="margin-top: 40px;">
-    <div class="row">
-        <div class="col-3" style="border: 1px solid black;">
-            <p>Sort by date event, alphabet, rating, popularity</p>
-            <p>Filter by category</p>
-        </div>
-        <div class="col-9" style="border: 1px solid black;">
-            col-8
-        </div>
-    </div>
-</div>
+{% include "visit_komodo/subtemp.html" with query=destination %}
 
 {% endblock %}

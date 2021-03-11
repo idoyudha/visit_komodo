@@ -94,8 +94,8 @@ a {
 
 .top-food, .events {
     width: 100%;
-    max-width: 640px;
     min-height: 160px;
+    margin-top: 10px;
 }
 
 /* Footer */

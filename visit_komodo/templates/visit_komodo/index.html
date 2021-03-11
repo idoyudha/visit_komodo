@@ -49,7 +49,7 @@
       {% for data in destination %}
         <div class="col">
           <div class="card h-100">
-            <img src="{{ data.image_destination }}" class="card-img-top" alt="...">
+            <img src="{{ data.image }}" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text">{{ data.title }}</p>
             </div>
@@ -71,7 +71,7 @@
           <div class="card mb-3 top-food">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="{{ data.image_food }}" alt="..."  style="width: 100%;">
+                <img src="{{ data.image }}" alt="..."  style="width: 100%;">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
@@ -98,7 +98,7 @@
           <div class="card mb-3 events">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="{{ data.image_event }}" alt="..." style="width: 100%;">
+                <img src="{{ data.image }}" alt="..." style="width: 100%;">
               </div>
               <div class="col-md-8">
                 <div class="card-body">

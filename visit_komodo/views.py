@@ -72,10 +72,22 @@ def register(request):
         return render(request, "visit_komodo/register.html")
 
 def destination(request):
-    return render(request, "visit_komodo/destination.html")
+    destination = Destination.objects.all()[:5]
+    context = {
+        "destination": destination,
+    }
+    return render(request, "visit_komodo/destination.html", context)
 
 def food(request):
-    return render(request, "visit_komodo/food.html")
+    food = Food.objects.all()[:5]
+    context = {
+        "food": food,
+    }
+    return render(request, "visit_komodo/food.html", context)
 
 def event(request):
-    return render(request, "visit_komodo/event.html")
+    event = Event.objects.all()[:5]
+    context = {
+        "event": event,
+    }
+    return render(request, "visit_komodo/event.html", context)
