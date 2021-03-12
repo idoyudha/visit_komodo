@@ -106,3 +106,15 @@ footer {
     padding: 3px;
     color: black;
 }
+
+/* Sidebar submenu */
+.sidebar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#category-header {
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+}

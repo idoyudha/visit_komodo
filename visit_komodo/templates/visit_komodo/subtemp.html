@@ -4,8 +4,27 @@
 <div class="container-lg" style="margin-top: 40px;">
     <div class="row">
         <div class="col-3" style="border: 1px solid black;">
-            <p>Sort by date event, alphabet, rating, popularity</p>
-            <p>Filter by category</p>
+            <div class="btn-group sidebar">
+                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Date event</a></li>
+                    <li><a class="dropdown-item" href="#">Popularity</a></li>
+                    <li><a class="dropdown-item" href="#">Rating</a></li>
+                </ul>
+            </div>
+            <p id="category-header">Category</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="beach" checked>
+                <label class="form-check-label" for="beach">Beach</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="mountain">
+                <label class="form-check-label" for="mountain">Mountain</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="village">
+                <label class="form-check-label" for="village">Village</label>
+            </div>
         </div>
         <div class="col-9" style="border: 1px solid black;">
             {% for data in query %}
@@ -16,9 +35,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                    <h5 class="card-title">{{ data.title }}</h5>
-                    <p class="card-text">{{ data.description }}</p>
-                    <p class="card-text"><small class="text-muted">Last updated {{ data.date_created | naturalday }}</small></p>
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <p class="card-text">{{ data.description }}</p>
+                        <p class="card-text"><small class="text-muted">Last updated {{ data.date_created | naturalday }}</small></p>
+                        <a class="bi bi-heart" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist"></a>
                     </div>
                 </div>
                 </div>
