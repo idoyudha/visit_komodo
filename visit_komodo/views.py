@@ -91,3 +91,6 @@ def event(request):
         "event": event,
     }
     return render(request, "visit_komodo/event.html", context)
+
+def add_listing(request):
+    return render(request, "visit_komodo/add_listing.html")

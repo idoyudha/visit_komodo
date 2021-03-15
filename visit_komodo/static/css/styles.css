@@ -118,3 +118,19 @@ footer {
     margin-top: 10px;
     border-bottom: 1px solid black;
 }
+
+/* Add Listing Page */
+
+#header_new_listing {
+    width: 100%;
+    padding: 50px 0;
+    margin: auto;
+    background-image: url("https://images.pexels.com/photos/551876/pexels-photo-551876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#add_listing {
+    left: 200px;
+    box-sizing: border-box;
+}
