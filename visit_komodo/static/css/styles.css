@@ -121,7 +121,7 @@ footer {
 
 /* Add Listing Page */
 
-#header_new_listing {
+.header_new_listing {
     width: 100%;
     padding: 50px 0;
     margin: auto;
@@ -130,7 +130,21 @@ footer {
     background-position: center;
 }
 
+#header_text {
+    margin: 0 auto;
+    width: 950px;
+}
+
+.optional {
+    float: right;
+    color: #999;
+    font-size: 12px;
+}
+
 #add_listing {
-    left: 200px;
+    padding-top: 25px;
     box-sizing: border-box;
+    margin: 0 auto;
+    width: 950px;
+    padding-right: 20%;
 }
