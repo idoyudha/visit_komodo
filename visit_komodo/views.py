@@ -116,3 +116,7 @@ def add_listing(request):
         return HttpResponseRedirect('/')
     else:
         return render(request, "visit_komodo/add_listing.html")
+
+@login_required(login_url='/login/')
+def profile_view(request):
+    return render(request, "visit_komodo/profile.html")
