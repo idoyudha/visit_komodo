@@ -1,9 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Destination, Event, Food
 
@@ -92,5 +94,25 @@ def event(request):
     }
     return render(request, "visit_komodo/event.html", context)
 
+@login_required(login_url='/login/')
+@csrf_exempt
 def add_listing(request):
-    return render(request, "visit_komodo/add_listing.html")
+    if request.method == "POST":
+        title = request.POST["title"]
+        category = request.POST["category"]
+        photo = request.POST["photo"]
+        location = request.POST["location"]
+        description = request.POST["description"]
+        if category == 'Destination':
+            Destination.objects.create(created_by=request.user, title=title, description=description, location=location, image=photo)
+        elif category == 'Food':
+            Food.objects.create(created_by=request.user, title=title, description=description, location=location, image=photo)
+        elif category == 'Event':
+            Event.objects.create(created_by=request.user, title=title, description=description, location=location, image=photo)
+        else:
+            return render(request, "visit_komodo/add_listing.html", {
+                "message": "Invalid category."
+            })
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, "visit_komodo/add_listing.html")
