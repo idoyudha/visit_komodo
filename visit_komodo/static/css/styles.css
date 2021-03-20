@@ -3,28 +3,30 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Navbar */
-
+nav, nav-item, nav-link
 nav {
-    border-bottom: 1px solid grey;
     background: white;
 }
 
-.nav-link {
+.nav-layout {
     border: 1px solid black;
     border-radius: 10px;
     font-family: 'Rubik', sans-serif;
     font-size: 13px;
 }
 
-.nav-link:hover {
+.nav-layout:hover {
     background-color: grey;
     border: 1px solid grey;
 }
 
-.nav-item {
+.item-layout {
     margin-left: 10px;
 }
 
@@ -65,7 +67,6 @@ i.bi {
 /* Menu Choices */
 
 .row {
-    font-family: 'Lato', sans-serif;
     font-size: 13px;
     font-weight: bold;
 }
@@ -142,7 +143,6 @@ footer {
 
 #add_listing {
     padding-top: 25px;
-    box-sizing: border-box;
     margin: 0 auto;
     width: 950px;
     padding-right: 20%;
@@ -163,37 +163,29 @@ footer {
 .profile-main {
     position: relative;
     background-color: #EEEEEE;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: -35px auto 0 auto;
-    max-width: 1280px;
-    box-sizing: border-box;
-    height: 26vh;
-    padding: 25px 25px 0 25px;
+    width: 1280px;
+    padding: 20px;
 }
 
 .profile-content {
     position: relative;
     margin: 5vh auto;
-    max-width: 1280px;
-    box-sizing: border-box;
+    width: 1280px;
     height: 100%;
 }
 
 #intro, #share {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px;
     background-color: #EEEEEE;
     width: 90%;
     margin-bottom: 25px;
-    box-sizing: border-box;
 }
 
 #activity {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 100%;
     background-color: #EEEEEE;
     padding: 15px;
-    box-sizing: border-box;
 }
 
 #img-profile {
@@ -207,10 +199,8 @@ footer {
 }
 
 .profile-nav {
-    border-bottom: 1px solid black;
-    text-align: center;
-}
-
-.profile-nav>a {
-    text-decoration: none;
+    position: relative;
+    background-color: #EEEEEE;
+    margin: auto;
+    width: 1320px;
 }

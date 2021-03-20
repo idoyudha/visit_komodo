@@ -12,16 +12,16 @@
                     <img id="img-profile" src="https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748" alt="">
                 </div>
                 <div class="col-8">
-                    <h4>Ido</h4>
-                    <p>@idoyudha</p>
+                    <h4>{{ request.user }}</h4>
+                    <p>@{{ request.user }}</p>
                     <div class="row">
                         <div class="col-2">
                             <h4>Trip Guides</h4>
-                            <p>10</p>
+                            <p>{{ count_blog }}</p>
                         </div>
                         <div class="col-2">
                             <h4>Contributions</h4>
-                            <p>10</p>
+                            <p>{{ contributions }}</p>
                         </div>
                     </div>
                     
@@ -32,33 +32,42 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-1 profile-nav">
-                    <a href="#">Starred</a>
-                </div>
-                <div class="col-1 profile-nav">
-                    <a href="#">Review</a>
-                </div>
-                <div class="col-1 profile-nav">
-                    <a href="#">Contributions</a>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
+
+<ul class="nav profile-nav">
+    <div class="row">
+        <div class="col">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Starred</a>
+            </li>
+        </div>
+        <div class="col">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Review</a>
+            </li>
+        </div>
+        <div class="col">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contributions</a>
+            </li>
+        </div>
+    </div>
+</ul>
 
 <div class="profile-content container-md">
     <div class="row">
         <div class="col-3" style="padding: 0;">
             <div id="intro">
-                <p>Intro</p>
-                <p>Jember, Indonesia</p>
-                <p>Joined in Mar 2021</p>
+                <p>{{ location }}</p>
+                <p>Joined in {{ date_join }}</p>
             </div>
+            
             <div id="share">
-                <p>Share your travel experience</p>
-                <p>Post place, food, or events</p>
-                <p>Post review</p>
+                <a href="#">Share your travel experience</a><br>
+                <a href="{% url 'add_listing' %}">Post place, food, or events</a>
             </div>
         </div>
         <div class="col-9" style="padding: 0;">

@@ -30,14 +30,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#"><i class="bi bi-file-earmark-richtext"></i>News</a>
+            <li class="nav-item item-layout">
+              <a class="nav-link nav-layout active" href="#"><i class="bi bi-file-earmark-richtext"></i>News</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#"><i class="bi bi-bicycle"></i>Trip Guides</a>
+            <li class="nav-item item-layout">
+              <a class="nav-link nav-layout active" href="#"><i class="bi bi-bicycle"></i>Trip Guides</a>
             </li>
             {% if user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item item-layout">
                   <div class="btn-group dropstart">
                     <button type="button" data-bs-toggle="dropdown" id="btn-user"></button>
                     <ul class="dropdown-menu">
@@ -48,8 +48,8 @@
                   </div>
                 </li>
             {% else %}
-                <li class="nav-item">
-                <a class="nav-link active" id="btn-log" href="{% url 'login' %}"><i class="bi bi-person-circle"></i>Sign In</a>
+                <li class="nav-item item-layout">
+                <a class="nav-link nav-layout active" id="btn-log" href="{% url 'login' %}"><i class="bi bi-person-circle"></i>Sign In</a>
                 </li>
             {% endif %}
           </ul>

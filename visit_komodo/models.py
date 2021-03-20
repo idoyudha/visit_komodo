@@ -24,7 +24,7 @@ class Profile(models.Model):
 class Destination(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
-    description = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
     image = models.URLField(null=True, blank=True)
@@ -35,7 +35,7 @@ class Destination(models.Model):
 class Food(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
-    description = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
     image = models.URLField(null=True, blank=True)
@@ -46,13 +46,22 @@ class Food(models.Model):
 class Event(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
-    description = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
     image = models.URLField(null=True, blank=True)
     def __str__(self):
         return f"{self.title}"
 
+
+class Blog(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=64)
+    description = models.TextField(null=True, blank=True)
+    date_created = models.DateField(default=timezone.now) 
+    image = models.URLField(null=True, blank=True)
+    def __str__(self):
+        return f"{self.title}"
 
 # Automatically create Profile model when User after register a User
 @receiver(post_save, sender=User)

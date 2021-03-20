@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import User, Destination, Event, Food
+from .models import User, Profile, Destination, Event, Food, Blog
 
 # Create your views here.
 def index(request):
@@ -119,4 +119,18 @@ def add_listing(request):
 
 @login_required(login_url='/login/')
 def profile_view(request):
-    return render(request, "visit_komodo/profile.html")
+    user_id = request.user.id
+    count_blog = Blog.objects.filter(created_by=user_id).count()
+    count_destination = Destination.objects.filter(created_by=user_id).count()
+    count_food = Food.objects.filter(created_by=user_id).count()
+    count_event = Event.objects.filter(created_by=user_id).count()
+    count_contrib = count_destination + count_food + count_event
+    location = Profile.objects.values_list('location', flat=True).get(username=user_id)
+    date_join = Profile.objects.values_list('date_join', flat=True).get(username=user_id)
+    context = {
+        "count_blog": count_blog,
+        "contributions": count_contrib,
+        "location": location,
+        "date_join": date_join
+    }
+    return render(request, "visit_komodo/profile.html", context)
