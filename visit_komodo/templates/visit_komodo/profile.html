@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-2">
                     <div class="d-md-flex justify-content-md-end">
-                        <a href="#" class="btn btn-primary btn-sm" role="button" data-bs-toggle="button"><i class="bi bi-gear"></i>Edit profile</a>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="showForm()"><i class="bi bi-gear"></i>Edit profile</button>
                     </div>
                 </div>
             </div>
@@ -76,6 +76,32 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="profile-form">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label" for="username">Username</label><br>
+            <input class="form-control form-control-sm" type="text" name="username" id="username" placeholder="Type username" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Image url</label><br>
+            <input class="form-control form-control-sm" type="url" name="image" id="image" placeholder="Type image url">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="bio">Bio</label><br>
+            <input class="form-control form-control-sm" type="text" name="bio" id="bio" placeholder="Type bio">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="location">Location</label><br>
+            <input class="form-control form-control-sm" type="text" name="location" id="location" placeholder="Type location">
+        </div>
+        <div class="mb-3 float-end">
+            <button type="button" class="btn btn-secondary btn-sm" value="Cancel">Cancel</button>
+            <input type="submit" class="btn btn-primary btn-sm" value="Save">
+        </div>
+    </form>
 </div>
 
 {% endblock %}

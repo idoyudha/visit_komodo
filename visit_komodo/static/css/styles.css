@@ -203,3 +203,8 @@ footer {
     margin: auto;
     width: 1320px;
 }
+
+/* Profile form */
+#profile-form {
+    display: none;
+}
