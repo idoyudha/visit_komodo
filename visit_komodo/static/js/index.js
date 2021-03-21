@@ -7,3 +7,7 @@ function showForm() {
         val.style.display = 'none'
     }
 }
+
+function cancelBtn() {
+    document.getElementById('profile-form').style.display = 'none'
+}

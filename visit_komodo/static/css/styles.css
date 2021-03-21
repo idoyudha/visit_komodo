@@ -204,7 +204,4 @@ footer {
     width: 1320px;
 }
 
-/* Profile form */
-#profile-form {
-    display: none;
-}
+/* Profile form, replace with bootstrap modal */

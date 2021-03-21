@@ -118,6 +118,7 @@ def add_listing(request):
         return render(request, "visit_komodo/add_listing.html")
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def profile_view(request):
     user_id = request.user.id
     count_blog = Blog.objects.filter(created_by=user_id).count()
@@ -127,10 +128,16 @@ def profile_view(request):
     count_contrib = count_destination + count_food + count_event
     location = Profile.objects.values_list('location', flat=True).get(username=user_id)
     date_join = Profile.objects.values_list('date_join', flat=True).get(username=user_id)
-    context = {
-        "count_blog": count_blog,
-        "contributions": count_contrib,
-        "location": location,
-        "date_join": date_join
-    }
-    return render(request, "visit_komodo/profile.html", context)
+    profile_data = Profile.objects.filter(id=user_id)
+    if request.method == 'POST':
+        profile_data.update(bio=request.POST["bio"], location=request.POST["location"], image=request.POST["image"])
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        context = {
+            "count_blog": count_blog,
+            "contributions": count_contrib,
+            "location": location,
+            "date_join": date_join,
+            "profile_data": profile_data
+        }
+        return render(request, "visit_komodo/profile.html", context)
