@@ -53,13 +53,14 @@
     </div>
   </div> -->
 
+  <!-- Grid Cards -->
   <!-- Popular Destination -->
   <div class="container-lg" style="margin-top: 40px;">
     <h3 style="margin-bottom: 15px;">Popular Destination Near Komodo Island</h3>
     
     <div class="row row-cols-1 row-cols-md-5 g-6">
       {% for data in destination %}
-        <div class="col">
+        <div class="col-sm">
           <div class="card h-100">
             <img src="{{ data.image }}" alt="..." class="card-img" height="100%" style="object-fit: cover;">
             <div class="card-body">
@@ -83,7 +84,7 @@
         <div class="card mb-3">
           <div class="row no-gutters">
             <div class="col-md-4 d-none d-md-block">
-              <img class="card-img" src="{{ data.image }}" alt="bitcoin" height="100%" style="object-fit: cover;">
+              <img class="card-img" src="{{ data.image }}" alt="food" height="100%" style="object-fit: cover;">
             </div>
             <div class="col-md-8 p-4">
                 <h3 class="mb-0">{{ data.title }}</h3>
@@ -109,7 +110,7 @@
         <div class="card mb-3">
           <div class="row no-gutters">
             <div class="col-md-4 d-none d-md-block">
-              <img class="card-img" src="{{ data.image }}" alt="bitcoin" height="100%" style="object-fit: cover;">
+              <img class="card-img" src="{{ data.image }}" alt="event" height="100%" style="object-fit: cover;">
             </div>
             <div class="col-md-8 p-4">
                 <h3 class="mb-0">{{ data.title }}</h3>

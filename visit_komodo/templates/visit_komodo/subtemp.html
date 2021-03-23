@@ -1,49 +1,67 @@
 {% load static %}
 {% load humanize %}
 
-<div class="container-lg" style="margin-top: 40px;">
-    <div class="row">
-        <div class="col-3" style="border: 1px solid black;">
-            <div class="btn-group sidebar">
-                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Date event</a></li>
-                    <li><a class="dropdown-item" href="#">Popularity</a></li>
-                    <li><a class="dropdown-item" href="#">Rating</a></li>
-                </ul>
-            </div>
-            <p id="category-header">Category</p>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="beach" checked>
-                <label class="form-check-label" for="beach">Beach</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="mountain">
-                <label class="form-check-label" for="mountain">Mountain</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="village">
-                <label class="form-check-label" for="village">Village</label>
+<!-- Carousel -->
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="https://miro.medium.com/max/3840/1*GXy_n2etfjQUZRv_8S49Zg.jpeg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <div class="jumbotron jumbotron-fluid bg-transparent">
+                <div class="container">
+                  <h1 class="display-4">VISIT KOMODO</h1>
+                </div>
             </div>
         </div>
-        <div class="col-9" style="border: 1px solid black;">
-            {% for data in query %}
-            <div class="card mb-3 events">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{{ data.image }}" alt="..." style="width: 100%;">
+      </div>
+      {% for data in query %}
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{{ data.image }}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <div class="jumbotron jumbotron-fluid bg-transparent">
+                <div class="container">
+                    <h1 class="display-4">{{ data.title }}</h1>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" data-bs-target="#carouselExampleDark"  data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+    
+<!-- Card Content -->
+<div class="container-lg" style="margin-top: 40px;">
+    <span id="red-line"></span>
+    <h2 class="head-sub">Komodo <span class="font-red">{{ x }}</span></h2>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4">
+            {% for data in query %}
+            <div class="col col-md-3">
+                <div class="card h-100" style="background-color: transparent; border: transparent;">
+                    <img src="{{ data.image }}" class="card-img-top" alt="...">
+                    <div class="card-body d-flex flex-column" style="padding: 0;">
+                        <p class="card-text"><small class="text-muted">Last updated {{ data.date_created | naturalday }}</small></p>
                         <h5 class="card-title">{{ data.title }}</h5>
                         <p class="card-text">{{ data.description }}</p>
-                        <p class="card-text"><small class="text-muted">Last updated {{ data.date_created | naturalday }}</small></p>
-                        <a class="bi bi-heart" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist"></a>
+                        <a href="#" class="btn btn-primary mt-auto">Go to page</a>
                     </div>
-                </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+    
 </div>

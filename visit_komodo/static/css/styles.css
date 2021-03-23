@@ -9,33 +9,29 @@
     color: #ddd;
 }
 
-
 body {
     background-color: #373737;
     color: #ddd;
+    overflow-x: hidden;
 }
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: transparent; 
+    border: none;
+}
+
+.carousel-item > img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.display-4 {
+    font-weight: 900;
+    color: white;
+}
+
 
 /* Navbar */
-nav {
-    background-color: #232323;
-}
-
-.nav-layout {
-    border: 1px solid black;
-    border-radius: 10px;
-    font-family: 'Rubik', sans-serif;
-    font-size: 13px;
-}
-
-.nav-layout:hover {
-    background-color: grey;
-    border: 1px solid grey;
-}
-
-.item-layout {
-    margin-left: 10px;
-}
-
 #btn-log {
     color: white;
     background-color: black;
@@ -69,25 +65,13 @@ i.bi {
 }
 
 /* End of Navbar */
-
-/* Menu Choices */
-
-.menu {
-    border-bottom: 1px solid black;
+.col-sm > .card {
+    background-color: transparent; 
+    border: transparent;
 }
-
-
-/* End of Menu Choices */
 
 a {
     text-decoration: none;
-}
-
-
-.top-food, .events {
-    width: 100%;
-    min-height: 160px;
-    margin-top: 10px;
 }
 
 /* Footer */
@@ -99,24 +83,38 @@ footer {
 }
 
 /* Sidebar submenu */
-.sidebar {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#red-line {
+    content: "";
+    position: absolute;
+    border-top: 8px solid #EA2027;
+    width: 100px;
+    margin-top: -10px;
 }
 
-#category-header {
+.head-sub {
+    font-size: 55px;
+    color: #EA2027;
+    font-weight: 800;
+    margin: 55px 0 25px 0;
+    
+}
+
+.card-img-top {
     width: 100%;
-    margin-top: 10px;
-    border-bottom: 1px solid black;
+    height: 15vw;
+    object-fit: cover
 }
 
+.font-red {
+    color: white;
+}
 /* Add Listing Page */
 
 .header_new_listing {
     width: 100%;
     padding: 50px 0;
     margin: auto;
-    background-image: url("https://images.pexels.com/photos/551876/pexels-photo-551876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-image: url("https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2018/11/mapping_the_night/18890909-1-eng-GB/Mapping_the_night_pillars.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -153,10 +151,12 @@ footer {
 
 .profile-main {
     position: relative;
-    background-color: #EEEEEE;
+    background-color: rgba(25, 42, 86, 0.9);
     margin: -35px auto 0 auto;
     width: 1280px;
     padding: 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .profile-content {
@@ -168,20 +168,20 @@ footer {
 
 #intro, #share {
     padding: 15px;
-    background-color: #EEEEEE;
+    background-color: rgba(25, 42, 86, 0.9);
     width: 90%;
     margin-bottom: 25px;
 }
 
 #activity {
     width: 100%;
-    background-color: #EEEEEE;
+    background-color: rgba(25, 42, 86, 0.9);
     padding: 15px;
 }
 
 #img-profile {
     width: 125px;
-    border-radius: 50%;
+    border-radius: 5px;
 }
 
 .col-8>h4 {
@@ -191,7 +191,7 @@ footer {
 
 .profile-nav {
     position: relative;
-    background-color: #EEEEEE;
+    background-color: rgba(25, 42, 86, 0.9);
     margin: auto;
     width: 1320px;
 }
