@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Profile, Destination, Event, Food, Blog
+from .forms import BlogForm
 
 # Create your views here.
 def index(request):
@@ -116,6 +117,25 @@ def add_listing(request):
         return HttpResponseRedirect('/')
     else:
         return render(request, "visit_komodo/add_listing.html")
+
+
+@login_required(login_url='/login/')
+@csrf_exempt
+def add_blog(request):
+    if request.method == "POST":
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.created_by = request.user.id
+            data.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = BlogForm()
+    context = {
+        "form": form
+    }
+    return render(request, "visit_komodo/add_blog.html", context)
+
 
 @login_required(login_url='/login/')
 @csrf_exempt

@@ -59,9 +59,8 @@ class Blog(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     # description = models.TextField(null=True, blank=True)
-    description = RichTextField(null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now) 
-    image = models.URLField(null=True, blank=True)
     def __str__(self):
         return f"{self.title}"
 
