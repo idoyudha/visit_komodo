@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 from datetime import date
 
@@ -57,7 +58,8 @@ class Event(models.Model):
 class Blog(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
-    description = models.TextField(null=True, blank=True)
+    # description = models.TextField(null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now) 
     image = models.URLField(null=True, blank=True)
     def __str__(self):
