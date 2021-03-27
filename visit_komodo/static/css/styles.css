@@ -7,6 +7,11 @@
     padding: 0;
     font-family: 'Lato', sans-serif;   
     color: #ddd;
+
+}
+
+.container, .container-lg {
+    color: #ddd;
 }
 
 body {
@@ -83,10 +88,9 @@ footer {
 
 .head-sub {
     font-size: 55px;
-    color: #EA2027;
+    color: white;
     font-weight: 800;
     margin: 55px 0 25px 0;
-    
 }
 
 .card-img-top {
@@ -96,7 +100,7 @@ footer {
 }
 
 .font-red {
-    color: white;
+    color: #EA2027;
 }
 /* Add Listing Page */
 
@@ -194,4 +198,22 @@ footer {
     width: 1320px;
 }
 
-/* Profile form, replace with bootstrap modal */
+/* Detail page */
+.article > img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.skyscanner-widget {
+    margin-top: 160px;
+}
+
+.col-sm > a {
+    text-decoration: none;
+}
+
+.col-sm > a> .card {
+    background-color: transparent; 
+    border: transparent;
+}
+

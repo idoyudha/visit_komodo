@@ -11,12 +11,14 @@
     <div class="row row-cols-1 row-cols-md-5 g-6">
       {% for data in destination %}
         <div class="col-sm">
-          <div class="card h-100">
-            <img src="{{ data.image_url }}" alt="..." class="card-img" height="100%" style="object-fit: cover;">
-            <div class="card-body">
-              <p class="card-text">{{ data.title }}</p>
+          <a href="{% url 'view_destination' data.title %}">
+            <div class="card h-100">
+              <img src="{{ data.image_url }}" alt="..." class="card-img" height="100%" style="object-fit: cover;">
+              <div class="card-body">
+                <p class="card-text">{{ data.title }}</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       {% endfor %}
     </div>
@@ -40,7 +42,7 @@
                 <h3 class="mb-0">{{ data.title }}</h3>
                 <div class="mb-1 text-muted">Last updated {{ data.date_created | naturalday }}</div>
                 <p class="card-text mb-auto">{{ data.description }}</p>
-                <a href="#" class="stretched-link">Continue reading</a>
+                <a href="{% url 'view_food' data.title %}" class="stretched-link">Continue reading</a>
             </div>
           </div>
         </div>
@@ -66,7 +68,7 @@
                 <h3 class="mb-0">{{ data.title }}</h3>
                 <div class="mb-1 text-muted">Last updated {{ data.date_created | naturalday }}</div>
                 <p class="card-text mb-auto">{{ data.description }}</p>
-                <a href="#" class="stretched-link">Continue reading</a>
+                <a href="{% url 'view_event' data.title %}" class="stretched-link">Continue reading</a>
             </div>
           </div>
         </div>
@@ -100,7 +102,7 @@
         </div>
       {% endfor %}
     </div>
-    <div class="float-end"><a href="{% url 'destination' %}">See all</a></div>
+    <div class="float-end"><a href="{% url 'travel_guide' %}">See all</a></div>
   </div>
 
 {% endblock %}

@@ -82,29 +82,56 @@ def destination(request):
     context = {
         "destination": destination,
     }
-    return render(request, "visit_komodo/destination.html", context)
+    return render(request, "visit_komodo/submenu/destination.html", context)
 
 def food(request):
     food = Food.objects.all()[:5]
     context = {
         "food": food,
     }
-    return render(request, "visit_komodo/food.html", context)
+    return render(request, "visit_komodo/submenu/food.html", context)
 
 def event(request):
     event = Event.objects.all()[:5]
     context = {
         "event": event,
     }
-    return render(request, "visit_komodo/event.html", context)
+    return render(request, "visit_komodo/submenu/event.html", context)
 
 def travel_guide(request):
     travel = Blog.objects.all()[:5]
     context = {
         "travel": travel,
     }
-    return render(request, "visit_komodo/travel_guide.html", context)
+    return render(request, "visit_komodo/submenu/travel_guide.html", context)
 
+# Go to page
+def view_destination(request, title):
+    destination = Destination.objects.filter(title=title)
+    all = Destination.objects.exclude(title=title)[:5]
+    context = {
+        "destination": destination,
+        "all": all
+    }
+    return render(request, "visit_komodo/detail_page/destination.html", context)
+
+def view_food(request, title):
+    food = Food.objects.filter(title=title)
+    all = Food.objects.exclude(title=title)[:5]
+    context = {
+        "food": food,
+        "all": all
+    }
+    return render(request, "visit_komodo/detail_page/food.html", context)
+
+def view_event(request, title):
+    event = Event.objects.filter(title=title)
+    all = Event.objects.exclude(title=title)[:5]
+    context = {
+        "event": event,
+        "all": all
+    }
+    return render(request, "visit_komodo/detail_page/event.html", context)
 
 @login_required(login_url='/login/')
 @csrf_exempt
