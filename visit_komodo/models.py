@@ -17,7 +17,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=280, default="CS50 Web Project 4 Network")
     date_join = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
-    image = models.URLField(default="https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748")
+    image_url = models.URLField(default="https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748")
     def __str__(self):
         return f"{self.username}"
 
@@ -28,7 +28,7 @@ class Destination(models.Model):
     description = models.TextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
-    image = models.URLField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
     def __str__(self):
         return f"{self.title} | {self.author}"
 
@@ -39,7 +39,7 @@ class Food(models.Model):
     description = models.TextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
-    image = models.URLField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
     def __str__(self):
         return f"{self.title} | {self.author}"
 
@@ -50,7 +50,7 @@ class Event(models.Model):
     description = models.TextField(null=True, blank=True)
     date_created = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
-    image = models.URLField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
     def __str__(self):
         return f"{self.title} | {self.author}"
 

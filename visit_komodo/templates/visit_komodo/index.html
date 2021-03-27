@@ -3,66 +3,16 @@
 {% load humanize %}
 
 {% block body %}
-  <!-- Card Menu -->
-  <!-- <div class="container-lg" style="margin-top: 40px;">
-    <div class="row">
-      <div class="col-md-2">
-        <div class="menu">
-          <div class="float-start">Hotels</div>
-          <div class="float-end"><i class="bi bi-house-door"></i></div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="menu">
-          <a href="https://www.google.com/travel/flights">
-            <div class="float-start">Flights</div>
-            <div class="float-end"><i class="bi bi-calendar2-check"></i></div>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="menu">
-          <a href="{% url 'destination' %}">
-            <div class="float-start">Destination</div>
-            <div class="float-end"><i class="bi bi-egg-fried"></i></div>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="menu">
-          <a href="{% url 'food' %}">
-            <div class="float-start">Food</div>
-            <div class="float-end"><i class="bi bi-camera"></i></div>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="menu">
-          <a href="{% url 'event' %}">
-            <div class="float-start">Events</div>
-            <div class="float-end"><i class="bi bi-truck"></i></div>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="menu">
-          <div class="float-start">Local</div>
-          <div class="float-end"><i class="bi bi-binoculars"></i></div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <!-- Grid Cards -->
   <!-- Popular Destination -->
   <div class="container-lg" style="margin-top: 40px;">
-    <h3 style="margin-bottom: 15px;">Popular Destination Near Komodo Island</h3>
+    <h3 style="margin-bottom: 15px;"><span class="font-red">Popular Destination</h3>
     
     <div class="row row-cols-1 row-cols-md-5 g-6">
       {% for data in destination %}
         <div class="col-sm">
           <div class="card h-100">
-            <img src="{{ data.image }}" alt="..." class="card-img" height="100%" style="object-fit: cover;">
+            <img src="{{ data.image_url }}" alt="..." class="card-img" height="100%" style="object-fit: cover;">
             <div class="card-body">
               <p class="card-text">{{ data.title }}</p>
             </div>
@@ -84,7 +34,7 @@
         <div class="card mb-3">
           <div class="row no-gutters">
             <div class="col-md-4 d-none d-md-block">
-              <img class="card-img" src="{{ data.image }}" alt="food" height="100%" style="object-fit: cover;">
+              <img class="card-img" src="{{ data.image_url }}" alt="food" height="100%" style="object-fit: cover;">
             </div>
             <div class="col-md-8 p-4">
                 <h3 class="mb-0">{{ data.title }}</h3>
@@ -110,7 +60,7 @@
         <div class="card mb-3">
           <div class="row no-gutters">
             <div class="col-md-4 d-none d-md-block">
-              <img class="card-img" src="{{ data.image }}" alt="event" height="100%" style="object-fit: cover;">
+              <img class="card-img" src="{{ data.image_url }}" alt="event" height="100%" style="object-fit: cover;">
             </div>
             <div class="col-md-8 p-4">
                 <h3 class="mb-0">{{ data.title }}</h3>
@@ -128,6 +78,29 @@
       </div>
     </div>
     
+  </div>
+
+  <!-- Travel Guide -->
+  <div class="container-lg" style="margin-top: 40px;">
+    <h3 style="margin-bottom: 15px;">Travel Guide</h3>
+    
+    <div class="row row-cols-1 row-cols-md-5 g-6">
+      {% for data in blog %}
+        <div class="col-sm">
+          <div class="card h-100">
+            <div class="img-overlay">
+              <img src="{{ data.image_url }}" alt="..." class="card-img" height="100%">
+              <h6 class="card-title">{{ data.title }}</h6>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <p class="card-text">{{ data.short_description }}</p>
+              <a href="#" class="btn btn-primary btn-sm">Continue reading</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="float-end"><a href="{% url 'destination' %}">See all</a></div>
   </div>
 
 {% endblock %}

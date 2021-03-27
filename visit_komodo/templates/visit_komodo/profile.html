@@ -13,7 +13,9 @@
                 </div>
                 <div class="col-8">
                     <h4>{{ request.user }}</h4>
-                    <p>@{{ request.user }}</p>
+                    {% for data in profile_data %}
+                        <p>{{ data.bio }}</p>
+                    {% endfor %}
                     <div class="row">
                         <div class="col-2">
                             <h4>Trip Guides</h4>
@@ -29,7 +31,7 @@
                 <div class="col-2">
                     <div class="d-md-flex justify-content-md-end">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#profile-form"><i class="bi bi-gear"></i>Edit profile</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#profile-form"><i class="bi bi-gear"></i> Edit profile</button>
                     </div>
                 </div>
             </div>

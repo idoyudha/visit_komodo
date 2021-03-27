@@ -27,9 +27,10 @@
         </a>
   
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">Destination</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Things to do</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Articles</a></li>
+          <li><a href="{% url 'destination' %}" class="nav-link px-2 text-white">Destination</a></li>
+          <li><a href="{% url 'food' %}" class="nav-link px-2 text-white">Food</a></li>
+          <li><a href="{% url 'event' %}" class="nav-link px-2 text-white">Event</a></li>
+          <li><a href="{% url 'travel_guide' %}" class="nav-link px-2 text-white">Travel Guide</a></li>
         </ul>
   
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -62,7 +63,7 @@
 
   {% endblock %}
   
-  <footer class="d-flex align-items-center mt-4">
+  <footer class="d-flex align-items-center" style="margin-top: 50px;">
     <div class="container">
       <div class="row">
         <div class="col">

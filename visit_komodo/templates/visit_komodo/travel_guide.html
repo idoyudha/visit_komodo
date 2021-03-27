@@ -1,8 +1,9 @@
 {% extends "visit_komodo/layout.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block body %}
 
-
+{% include "visit_komodo/subtemp.html" with query=travel x="Travel Guide" %}
 
 {% endblock %}

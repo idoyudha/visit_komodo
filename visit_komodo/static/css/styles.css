@@ -49,6 +49,21 @@ a {
     text-decoration: none;
 }
 
+/* Landing page */
+.img-overlay > img{
+    object-fit: cover; 
+    width: 100%;
+}
+
+.img-overlay > h6{
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+}
+
+
 /* Footer */
 footer {
     color: #b3b3b3;
@@ -57,7 +72,7 @@ footer {
     height: 50px;
 }
 
-/* Sidebar submenu */
+/* Submenu */
 #red-line {
     content: "";
     position: absolute;

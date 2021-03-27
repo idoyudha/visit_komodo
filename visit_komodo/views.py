@@ -15,10 +15,12 @@ def index(request):
     destination = Destination.objects.all()[:5] # return first 5 objects
     event = Event.objects.all()[:5]
     food = Food.objects.all()[:5]
+    blog = Blog.objects.all()[:5]
     context = {
         "destination": destination,
         "event": event,
         "food": food,
+        "blog": blog,
     }
     return render(request, "visit_komodo/index.html", context)
 
@@ -74,6 +76,7 @@ def register(request):
     else:
         return render(request, "visit_komodo/register.html")
 
+# Sub menu from index
 def destination(request):
     destination = Destination.objects.all()[:5]
     context = {
@@ -95,6 +98,14 @@ def event(request):
     }
     return render(request, "visit_komodo/event.html", context)
 
+def travel_guide(request):
+    travel = Blog.objects.all()[:5]
+    context = {
+        "travel": travel,
+    }
+    return render(request, "visit_komodo/travel_guide.html", context)
+
+
 @login_required(login_url='/login/')
 @csrf_exempt
 def add_listing(request):
@@ -105,11 +116,11 @@ def add_listing(request):
         location = request.POST["location"]
         description = request.POST["description"]
         if category == 'Destination':
-            Destination.objects.create(author=request.user, title=title, description=description, location=location, image=photo)
+            Destination.objects.create(author=request.user, title=title, description=description, location=location, image_url=photo)
         elif category == 'Food':
-            Food.objects.create(author=request.user, title=title, description=description, location=location, image=photo)
+            Food.objects.create(author=request.user, title=title, description=description, location=location, image_url=photo)
         elif category == 'Event':
-            Event.objects.create(author=request.user, title=title, description=description, location=location, image=photo)
+            Event.objects.create(author=request.user, title=title, description=description, location=location, image_url=photo)
         else:
             return render(request, "visit_komodo/add_listing.html", {
                 "message": "Invalid category."
@@ -149,7 +160,7 @@ def profile_view(request):
     date_join = Profile.objects.values_list('date_join', flat=True).get(username=user_id)
     profile_data = Profile.objects.filter(id=user_id)
     if request.method == 'POST':
-        profile_data.update(bio=request.POST["bio"], location=request.POST["location"], image=request.POST["image"])
+        profile_data.update(bio=request.POST["bio"], location=request.POST["location"], image_url=request.POST["image"])
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         context = {

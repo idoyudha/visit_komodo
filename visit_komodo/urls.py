@@ -11,6 +11,7 @@ urlpatterns = [
     path('destination', views.destination, name='destination'),
     path('food', views.food, name='food'),
     path('event', views.event, name='event'),
+    path('travel_guide', views.travel_guide, name='travel_guide'),
 
     path('add_listing', views.add_listing, name='add_listing'),
     path('add_blog', views.add_blog, name='add_blog'),
