@@ -106,6 +106,9 @@ def travel_guide(request):
     return render(request, "visit_komodo/submenu/travel_guide.html", context)
 
 # Go to page
+def view_detail(request, submenu, title): # will update this one for saving the template
+    return None
+
 def view_destination(request, title):
     destination = Destination.objects.filter(title=title)
     all = Destination.objects.exclude(title=title)[:5]

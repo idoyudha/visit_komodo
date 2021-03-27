@@ -16,6 +16,7 @@ urlpatterns = [
     path('travel_guide', views.travel_guide, name='travel_guide'),
 
     # goto page
+    path('view/<str:menu>/<str:title>', views.view_detail, name='view_detail'), # will update this one for saving the template
     path('view_destination/<str:title>', views.view_destination, name='view_destination'),
     path('view_food/<str:title>', views.view_food, name='view_food'),
     path('view_event/<str:title>', views.view_event, name='view_event'),
