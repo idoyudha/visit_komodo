@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -105,11 +105,11 @@ def add_listing(request):
         location = request.POST["location"]
         description = request.POST["description"]
         if category == 'Destination':
-            Destination.objects.create(created_by=request.user, title=title, description=description, location=location, image=photo)
+            Destination.objects.create(author=request.user, title=title, description=description, location=location, image=photo)
         elif category == 'Food':
-            Food.objects.create(created_by=request.user, title=title, description=description, location=location, image=photo)
+            Food.objects.create(author=request.user, title=title, description=description, location=location, image=photo)
         elif category == 'Event':
-            Event.objects.create(created_by=request.user, title=title, description=description, location=location, image=photo)
+            Event.objects.create(author=request.user, title=title, description=description, location=location, image=photo)
         else:
             return render(request, "visit_komodo/add_listing.html", {
                 "message": "Invalid category."
@@ -122,15 +122,14 @@ def add_listing(request):
 @login_required(login_url='/login/')
 @csrf_exempt
 def add_blog(request):
+    form = BlogForm()
     if request.method == "POST":
         form = BlogForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
-            data.created_by = request.user.id
+            data.author = request.user
             data.save()
             return HttpResponseRedirect('/')
-    else:
-        form = BlogForm()
     context = {
         "form": form
     }
@@ -141,10 +140,10 @@ def add_blog(request):
 @csrf_exempt
 def profile_view(request):
     user_id = request.user.id
-    count_blog = Blog.objects.filter(created_by=user_id).count()
-    count_destination = Destination.objects.filter(created_by=user_id).count()
-    count_food = Food.objects.filter(created_by=user_id).count()
-    count_event = Event.objects.filter(created_by=user_id).count()
+    count_blog = Blog.objects.filter(author=user_id).count()
+    count_destination = Destination.objects.filter(author=user_id).count()
+    count_food = Food.objects.filter(author=user_id).count()
+    count_event = Event.objects.filter(author=user_id).count()
     count_contrib = count_destination + count_food + count_event
     location = Profile.objects.values_list('location', flat=True).get(username=user_id)
     date_join = Profile.objects.values_list('date_join', flat=True).get(username=user_id)

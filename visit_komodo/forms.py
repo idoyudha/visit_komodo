@@ -1,14 +1,15 @@
 from django import forms
-from django.contrib import admin
+from .models import Blog 
 from ckeditor.widgets import CKEditorWidget
 
-from .models import Blog 
 
 class BlogForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
     class Meta:
+        content = forms.CharField(widget=CKEditorWidget())
         model = Blog
-        fields = '__all__'
+        fields = ['title', 'short_description', 'image_url', 'body']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'short_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3 }),
+            'image_url': forms.URLInput(attrs={'class': 'form-control'}),
         }
