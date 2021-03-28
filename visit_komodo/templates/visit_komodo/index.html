@@ -88,18 +88,18 @@
     
     <div class="row row-cols-1 row-cols-md-5 g-6">
       {% for data in blog %}
-        <div class="col-sm">
-          <div class="card h-100">
-            <div class="img-overlay">
-              <img src="{{ data.image_url }}" alt="..." class="card-img" height="100%">
+      <div class="col-sm">
+        <div class="card h-100 my-4">
+          <div class="img-overlay">
+              <img src="{{ data.image_url }}" alt="..." class="card-img card-img-top" height="100%" style="object-fit: cover;">
               <h6 class="card-title">{{ data.title }}</h6>
-            </div>
-            <div class="card-body" style="padding: 0;">
-              <p class="card-text">{{ data.short_description }}</p>
-              <a href="#" class="btn btn-primary btn-sm">Continue reading</a>
-            </div>
+          </div>
+          <div class="card-body" style="padding: 0;">
+            <p class="card-text">{{ data.short_description }}</p>
+            <a href="#" class="btn btn-primary btn-sm">Continue reading</a>
           </div>
         </div>
+      </div>
       {% endfor %}
     </div>
     <div class="float-end"><a href="{% url 'travel_guide' %}">See all</a></div>
