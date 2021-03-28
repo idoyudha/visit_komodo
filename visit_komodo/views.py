@@ -2,10 +2,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+
+# Django REST Framework
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import DestinationSerializer, FoodSerializer, EventSerializer, BlogSerializer
 
 from .models import User, Profile, Destination, Event, Food, Blog
 from .forms import BlogForm
@@ -211,3 +217,105 @@ def profile_view(request):
             "profile_data": profile_data
         }
         return render(request, "visit_komodo/profile.html", context)
+
+# API routes
+# destination
+@login_required(login_url='/login/')
+@api_view(['GET'])
+def destination_api(request):
+    destination = Destination.objects.all()
+    serializer = DestinationSerializer(destination, many=True)
+    return Response(serializer.data)
+
+@login_required(login_url='/login/')
+@api_view(['GET', 'PUT'])
+def destination_api_detail(request, pk):
+    try:
+        destination = Destination.objects.get(id=pk)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = DestinationSerializer(destination, many=False)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = DestinationSerializer(destination, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        
+# food
+@login_required(login_url='/login/')
+@api_view(['GET'])
+def food_api(request):
+    food = Food.objects.all()
+    serializer = FoodSerializer(food, many=True)
+    return Response(serializer.data)
+
+@login_required(login_url='/login/')
+@api_view(['GET', 'PUT'])
+def food_api_detail(request, pk):
+    try:
+        food = Food.objects.get(id=pk)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = FoodSerializer(food, many=False)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = FoodSerializer(food, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        
+# event
+@login_required(login_url='/login/')
+@api_view(['GET'])
+def event_api(request):
+    event = Event.objects.all()
+    serializer = EventSerializer(event, many=True)
+    return Response(serializer.data)
+
+@login_required(login_url='/login/')
+@api_view(['GET', 'PUT'])
+def event_api_detail(request, pk):
+    try:
+        event = Food.objects.get(id=pk)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = EventSerializer(event, many=False)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = EventSerializer(event, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        
+# travel guide
+@login_required(login_url='/login/')
+@api_view(['GET'])
+def travelguide_api(request):
+    travel = Blog.objects.all()
+    serializer = BlogSerializer(travel, many=True)
+    return Response(serializer.data)
+
+@login_required(login_url='/login/')
+@api_view(['GET', 'PUT'])
+def travelguide_api_detail(request, pk):
+    try:
+        travel = Blog.objects.get(id=pk)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = BlogSerializer(travel, many=False)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = BlogSerializer(travel, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        

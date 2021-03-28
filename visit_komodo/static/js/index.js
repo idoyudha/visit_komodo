@@ -1,13 +1,14 @@
-function showForm() {
-    let val = document.getElementById('profile-form')
-    if (val.style.display === 'none') {
-        val.style.display = 'block'
-    } 
-    else {
-        val.style.display = 'none'
+function addtoWatchlist(id) {
+    let text = document.getElementById('wishlist').textContent
+    let type = document.getElementById('type').textContent
+    console.log(type, id)
+    if (text === 'Add to wishlist') {
+        document.getElementById('wishlist').className = 'btn btn-warning'
+        document.getElementById('wishlist').textContent = 'Remove from wishlist'
     }
-}
-
-function cancelBtn() {
-    document.getElementById('profile-form').style.display = 'none'
+    else {
+        document.getElementById('wishlist').className = 'btn btn-danger'
+        document.getElementById('wishlist').textContent = 'Add to wishlist'
+    }
+    fetch()
 }

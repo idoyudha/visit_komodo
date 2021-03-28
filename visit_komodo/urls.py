@@ -22,6 +22,21 @@ urlpatterns = [
     path('view_event/<str:title>', views.view_event, name='view_event'),
     path('view_travelguide/<str:title>', views.view_travelguide, name='view_travelguide'),
 
+    # create
     path('add_listing', views.add_listing, name='add_listing'),
     path('add_blog', views.add_blog, name='add_blog'),
+
+    # API routes
+    # destination
+    path('destination_api', views.destination_api, name='destination_api'),
+    path('destination_api_detail/<int:pk>', views.destination_api_detail, name='destination_api_detail'),
+    # food
+    path('food_api', views.food_api, name='food_api'),
+    path('food_api_detail/<int:pk>', views.food_api_detail, name='food_api_detail'),
+    # event
+    path('event_api', views.event_api, name='event_api'),
+    path('event_api_detail/<int:pk>', views.event_api_detail, name='event_api_detail'),
+    # travel guide
+    path('travelguide_api', views.travelguide_api, name='travelguide_api'),
+    path('travelguide_api_detail/<int:pk>', views.travelguide_api_detail, name='travelguide_api_detail'),
 ]
