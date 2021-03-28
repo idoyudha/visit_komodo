@@ -20,6 +20,7 @@ urlpatterns = [
     path('view_destination/<str:title>', views.view_destination, name='view_destination'),
     path('view_food/<str:title>', views.view_food, name='view_food'),
     path('view_event/<str:title>', views.view_event, name='view_event'),
+    path('view_travelguide/<str:title>', views.view_travelguide, name='view_travelguide'),
 
     path('add_listing', views.add_listing, name='add_listing'),
     path('add_blog', views.add_blog, name='add_blog'),

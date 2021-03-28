@@ -136,6 +136,16 @@ def view_event(request, title):
     }
     return render(request, "visit_komodo/detail_page/event.html", context)
 
+def view_travelguide(request, title):
+    travel = Blog.objects.filter(title=title)
+    all = Blog.objects.exclude(title=title)[:5]
+    context = {
+        "travel": travel,
+        "all": all
+    }
+    return render(request, "visit_komodo/detail_page/travel_guide.html", context)
+
+
 @login_required(login_url='/login/')
 @csrf_exempt
 def add_listing(request):

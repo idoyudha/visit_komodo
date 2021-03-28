@@ -96,7 +96,7 @@
           </div>
           <div class="card-body" style="padding: 0;">
             <p class="card-text">{{ data.short_description }}</p>
-            <a href="#" class="btn btn-primary btn-sm">Continue reading</a>
+            <a href="{% url 'view_travelguide' data.title %}" class="btn btn-primary btn-sm">Continue reading</a>
           </div>
         </div>
       </div>
