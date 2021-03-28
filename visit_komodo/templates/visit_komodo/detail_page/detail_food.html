@@ -8,7 +8,7 @@
         <div class="col-md-8 article">
             {% for data in query %}
                 <h4 class="head-sub">{{ data.title }}</h4>
-                <p style="font-size: 20px; color: #58a6ff;">{{ x }}</p>
+                <p style="font-size: 20px; color: #58a6ff;" id="type">{{ x }}</p>
                 <img src="{{ data.image_url }}" alt="...">
                 <h2>Description</h2>
                 <p>{{ data.description }}</p>
@@ -19,7 +19,9 @@
             <div data-skyscanner-widget="SearchWidget"></div>
             <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
             <div class="d-grid gap-2 mt-4">
-                <button type="button" class="btn btn-danger"><i class="bi bi-heart-fill"></i> Add to wishlist</button>
+                {% for data in query %}
+                    <button type="button" id="wishlist" class="btn btn-danger" onclick="addtoWishlist({{ data.id }})">Add to wishlist</button>
+                {% endfor %}
             </div>
         </div>
     </div><hr>
