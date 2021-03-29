@@ -12,7 +12,6 @@
                 <img src="{{ data.image_url }}" alt="...">
                 <h2>Description</h2>
                 <p>{{ data.description }}</p>
-                <p>Total wishlist: {{ data.wishlist.count }}</p>
             {% endfor %}
         </div>
         <!-- Widget from skyscanner -->
@@ -27,6 +26,7 @@
                         {% else %}
                             <button type="button" id="wishlist" class="btn btn-danger" onclick="addtoWishlist({{ data.id }})">Add to wishlist</button>  
                         {% endif %}
+                        <p>Total wishlist: <span id="totalWishlist">{{ data.wishlist.count }}</span></p>
                     {% endfor %}
                 {% endif %}
             </div>

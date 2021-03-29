@@ -16,28 +16,34 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 function addtoWishlist(id) {
-    let text = document.getElementById('wishlist').textContent
     let type = document.getElementById('type').textContent
-    let userId = document.getElementById('userId').textContent
-    let userIDInt = parseInt(userId)
-    if (text === 'Add to wishlist') {
-        document.getElementById('wishlist').className = 'btn btn-warning'
-        document.getElementById('wishlist').textContent = 'Remove from wishlist'
+    if (type === 'destination') {
+        wishlistFetch('/destination_api_detail', id)
+    }
+    else if (type === 'food') {
+        wishlistFetch('/food_api_detail', id)
+    }
+    else if (type == 'event') {
+        wishlistFetch('/event_api_detail', id)
+    }
+    else if (type == 'travel guide') {
+        wishlistFetch('/travelguide_api_detail', id)
     }
     else {
-        document.getElementById('wishlist').className = 'btn btn-danger'
-        document.getElementById('wishlist').textContent = 'Add to wishlist'
+        console.log('wrong type')
     }
-    if (type === 'destination') {
-        fetch(`/destination_api_detail/${id}`)
+}
+
+function wishlistFetch(url, id) {
+    let userId = document.getElementById('userId').textContent
+    let userIDInt = parseInt(userId)
+    fetch(`${url}/${id}`)
         .then(response => response.json())
         .then(data => {
             console.log(data)
             let wishlist = data.wishlist
-            console.log('user wishlist', wishlist)
             if (wishlist.includes(userIDInt)) {
-                console.log('Already wishlist')
-                fetch(`/destination_api_detail/${id}`, {
+                fetch(`${url}/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-type': 'application/json',
@@ -49,10 +55,12 @@ function addtoWishlist(id) {
                 })
                 .then(response => response.json())
                 .then(message => console.log('Remove from wishlist', message))
+                document.getElementById('wishlist').className = 'btn btn-danger'
+                document.getElementById('wishlist').textContent = 'Add to wishlist'
+                document.getElementById('totalWishlist').textContent = `${wishlist.length - 1}`
             }
             else {
-                console.log('Not yet wishlist')
-                fetch(`/destination_api_detail/${id}`, {
+                fetch(`${url}/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-type': 'application/json',
@@ -64,20 +72,10 @@ function addtoWishlist(id) {
                 })
                 .then(response => response.json())
                 .then(message => console.log('Add to wishlist', message))
+                document.getElementById('wishlist').className = 'btn btn-warning'
+                document.getElementById('wishlist').textContent = 'Remove from wishlist'
+                document.getElementById('totalWishlist').textContent = `${wishlist.length + 1}`
             }
         })
         .catch(error => console.log(error))
-    }
-    else if (type === 'food') {
-
-    }
-    else if (type == 'event') {
-
-    }
-    else if (type == 'travel guide') {
-
-    }
-    else {
-        console.log('wrong type')
-    }
 }

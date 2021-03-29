@@ -1,3 +1,4 @@
+import json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -238,11 +239,19 @@ def destination_api_detail(request, pk):
         serializer = DestinationSerializer(destination, many=False)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = DestinationSerializer(destination, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        # serializer = DestinationSerializer(destination, data=request.data, partial=True)
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     return Response(serializer.data)
+        data = json.loads(request.body)
+        user = request.user.id 
+        if data.get('wishlist') is not None:
+            if data['wishlist'] is True:
+                destination.wishlist.add(user)
+            else:
+                destination.wishlist.remove(user)
+        destination.save()
+        return JsonResponse({"message": "Success"}, status=201)
     else:
         return JsonResponse({"error": "GET or PUT request required."}, status=400)
         
@@ -265,11 +274,17 @@ def food_api_detail(request, pk):
         serializer = FoodSerializer(food, many=False)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = FoodSerializer(food, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        data = json.loads(request.body)
+        user = request.user.id 
+        if data.get('wishlist') is not None:
+            if data['wishlist'] is True:
+                food.wishlist.add(user)
+            else:
+                food.wishlist.remove(user)
+        food.save()
+        return JsonResponse({"message": "Success"}, status=201)
+    else:
+        return JsonResponse({"error": "GET or PUT request required."}, status=400)
         
 # event
 @login_required(login_url='/login/')
@@ -283,18 +298,24 @@ def event_api(request):
 @api_view(['GET', 'PUT'])
 def event_api_detail(request, pk):
     try:
-        event = Food.objects.get(id=pk)
+        event = Event.objects.get(id=pk)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         serializer = EventSerializer(event, many=False)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = EventSerializer(event, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        data = json.loads(request.body)
+        user = request.user.id 
+        if data.get('wishlist') is not None:
+            if data['wishlist'] is True:
+                event.wishlist.add(user)
+            else:
+                event.wishlist.remove(user)
+        event.save()
+        return JsonResponse({"message": "Success"}, status=201)
+    else:
+        return JsonResponse({"error": "GET or PUT request required."}, status=400)
         
 # travel guide
 @login_required(login_url='/login/')
@@ -315,9 +336,15 @@ def travelguide_api_detail(request, pk):
         serializer = BlogSerializer(travel, many=False)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = BlogSerializer(travel, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+        data = json.loads(request.body)
+        user = request.user.id 
+        if data.get('wishlist') is not None:
+            if data['wishlist'] is True:
+                travel.wishlist.add(user)
+            else:
+                travel.wishlist.remove(user)
+        travel.save()
+        return JsonResponse({"message": "Success"}, status=201)
+    else:
+        return JsonResponse({"error": "GET or PUT request required."}, status=400)
         
