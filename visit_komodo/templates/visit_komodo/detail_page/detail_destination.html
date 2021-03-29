@@ -12,6 +12,7 @@
                 <img src="{{ data.image_url }}" alt="...">
                 <h2>Description</h2>
                 <p>{{ data.description }}</p>
+                <p>Total wishlist: {{ data.wishlist.count }}</p>
             {% endfor %}
         </div>
         <!-- Widget from skyscanner -->
@@ -19,9 +20,15 @@
             <div data-skyscanner-widget="SearchWidget"></div>
             <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
             <div class="d-grid gap-2 mt-4">
-                {% for data in query %}
-                    <button type="button" id="wishlist" class="btn btn-danger" onclick="addtoWishlist({{ data.id }})">Add to wishlist</button>
-                {% endfor %}
+                {% if user.is_authenticated %}
+                    {% for data in query %}
+                        {% if request.user in data.wishlist.all %}
+                            <button type="button" id="wishlist" class="btn btn-warning" onclick="addtoWishlist({{ data.id }})">Remove from wishlist</button>
+                        {% else %}
+                            <button type="button" id="wishlist" class="btn btn-danger" onclick="addtoWishlist({{ data.id }})">Add to wishlist</button>  
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div><hr>

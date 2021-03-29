@@ -243,6 +243,8 @@ def destination_api_detail(request, pk):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_404_BAD_request)
+    else:
+        return JsonResponse({"error": "GET or PUT request required."}, status=400)
         
 # food
 @login_required(login_url='/login/')
