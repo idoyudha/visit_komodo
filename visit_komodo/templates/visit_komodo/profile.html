@@ -4,79 +4,30 @@
 {% block body %}
 <div class="cover-photo">
 </div>
-<div class="row">
-    <div class="col">
-        <div class="profile-main container-md">
-            <div class="row">
-                <div class="col-2">
-                    <img id="img-profile" src="https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748" alt="">
-                </div>
-                <div class="col-8">
-                    <h4>{{ request.user }}</h4>
-                    {% for data in profile_data %}
-                        <p>{{ data.bio }}</p>
-                    {% endfor %}
-                    <div class="row">
-                        <div class="col-2">
-                            <h4>Trip Guides</h4>
-                            <p>{{ count_blog }}</p>
-                        </div>
-                        <div class="col-2">
-                            <h4>Contributions</h4>
-                            <p>{{ contributions }}</p>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-2">
-                    <div class="d-md-flex justify-content-md-end">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#profile-form"><i class="bi bi-gear"></i> Edit profile</button>
-                    </div>
-                </div>
-            </div>
-            
+<!-- Profile box white -->
+<div class="container-md profile-box" style="padding-left: 5%; padding-right: 5%">
+    <div class="row my-3">
+        <div class="col-md-2 d-flex justify-content-start">
+            <img id="img-profile" src="https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748" alt="...">
+        </div>
+        <div class="col-md-10">
+            {% for data in profile_data %}
+                <h3>{{ data.username }}</h3>
+                <p><i class="bi bi-box-arrow-in-right"></i>Join on {{ data.date_join }}</p>
+                <p><i class="bi bi-geo-alt-fill"></i>{{ data.location }}</p>
+            {% endfor %}
         </div>
     </div>
-</div>
 
-<ul class="nav profile-nav">
-    <div class="row">
-        <div class="col">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Starred</a>
-            </li>
+    <div class="row my-3">
+        <div class="col-md-9 d-flex justify-content-md-start">
+            {% for data in profile_data %}
+            <p>{{ data.bio }}</p>
+            {% endfor %}
         </div>
-        <div class="col">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Review</a>
-            </li>
-        </div>
-        <div class="col">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contributions</a>
-            </li>
-        </div>
-    </div>
-</ul>
-
-<div class="profile-content container-md">
-    <div class="row">
-        <div class="col-3" style="padding: 0;">
-            <div id="intro">
-                <p>{{ location }}</p>
-                <p>Joined in {{ date_join }}</p>
-            </div>
-            
-            <div id="share">
-                <a href="{% url 'add_blog' %}">Share anything</a><br>
-                <a href="{% url 'add_listing' %}">Post place, food, or events</a>
-            </div>
-        </div>
-        <div class="col-9" style="padding: 0;">
-            <div id="activity">
-                <p>Your activity will be posted here</p>
-            </div>
+        <div class="col-md-3 d-flex justify-content-md-end">
+            <!-- Button trigger modal -->
+            <button type="button" style="max-height: 30px;" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#profile-form"><i class="bi bi-gear"></i> Edit profile</button>
         </div>
     </div>
 </div>

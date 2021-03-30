@@ -14,7 +14,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.CharField(max_length=280, default="CS50 Web Final Project")
+    bio = models.TextField(default="CS50 Web Final Project")
     date_join = models.DateField(default=timezone.now)
     location = models.CharField(max_length=100, null=True, blank=True) 
     image_url = models.URLField(default="https://cdn.shopify.com/s/files/1/1132/3108/files/NZ_corner_400x.jpg?v=1603743748")

@@ -190,10 +190,7 @@ footer {
     padding: 15px;
 }
 
-#img-profile {
-    width: 125px;
-    border-radius: 5px;
-}
+
 
 .col-8>h4 {
     margin: 0;
@@ -205,6 +202,22 @@ footer {
     background-color: rgba(25, 42, 86, 0.9);
     margin: auto;
     width: 1320px;
+}
+
+.profile-box {
+    background-color: rgba(0, 0, 0, 0.83);
+    position: relative;
+    padding: 20px;
+    margin: -15vh auto 0 auto;
+}
+
+#img-profile {
+    width: 125px;
+    border-radius: 10px;
+}
+
+.bi {
+    margin-right: 5px;
 }
 
 /* Detail page */
