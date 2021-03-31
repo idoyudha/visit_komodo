@@ -79,3 +79,70 @@ function wishlistFetch(url, id) {
         })
         .catch(error => console.log(error))
 }
+
+function contrib(str) {
+    if (str == 'destination') {
+        console.log('Found destination')
+        contribFetch(str)
+    }
+    else if (str == 'food') {
+        console.log('Found food')
+        contribFetch(str)
+    }
+    else if (str == 'event') {
+        console.log('Found event')
+        contribFetch(str)
+    }
+    else if (str == 'travelguide') {
+        console.log('Found travel guide')
+        contribFetch(str)
+    }
+    else {
+        console.log('NOT FOUND!!')
+    }
+}
+
+function contribFetch(str) {
+    let authorID = document.getElementById('userId').textContent
+    // document.getElementById(`contrib-${str}`).style.backgroundColor = 'rgba(13, 185, 248, 0.1)'
+    fetch(`/${str}_api`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.filter(data => data.author == authorID))
+            let filteredData = data.filter(data => data.author == authorID)
+            let result = filteredData.map((item, index) => {
+                if (str === 'travelguide') {
+                    return `<div class="card mb-3" style="background-color: transparent;">
+                                <div class="row no-gutters">
+                                <div class="col-md-4 d-none d-md-block">
+                                    <img class="card-img" src="${item.image_url}" alt="..." height="100%" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8 p-4">
+                                    <h3 class="mb-0">${item.title}</h3>
+                                    <div class="mb-1 text-muted">Last updated ${item.date_created}</div>
+                                    <p class="card-text mb-auto">${item.short_description}</p>
+                                    <a href="view_${str}/${item.title}" class="stretched-link">Continue reading</a>
+                                </div>
+                                </div>
+                            </div>`
+                }
+                else {
+                    return `<div class="card mb-3" style="background-color: transparent;">
+                                <div class="row no-gutters">
+                                <div class="col-md-4 d-none d-md-block">
+                                    <img class="card-img" src="${item.image_url}" alt="..." height="100%" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8 p-4">
+                                    <h3 class="mb-0">${item.title}</h3>
+                                    <div class="mb-1 text-muted">Last updated ${item.date_created}</div>
+                                    <p class="card-text mb-auto">${item.description}</p>
+                                    <a href="view_${str}/${item.title}" class="stretched-link">Continue reading</a>
+                                </div>
+                                </div>
+                            </div>`
+                }
+            })
+            document.getElementById('contrib-result').innerHTML = result.join('')
+        })
+        .catch(error => console.log(error))
+}

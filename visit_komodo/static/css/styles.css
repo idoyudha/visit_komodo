@@ -207,7 +207,6 @@ footer {
 .profile-box {
     background-color: rgba(0, 0, 0, 0.83);
     position: relative;
-    padding: 20px;
     margin: -15vh auto 0 auto;
 }
 
@@ -218,6 +217,26 @@ footer {
 
 .bi {
     margin-right: 5px;
+}
+
+.contribution-nav {
+    border-bottom: 2px solid grey;
+}
+
+.contribution-nav > a {
+    text-decoration: none;
+    width: 25%;
+}
+
+.contribution-nav > a:hover {
+    background-color: rgba(13, 185, 248, 0.1);
+}
+
+.contribution-nav > a > div:hover{
+    text-decoration: none;
+    color: #1DA1F2;
+    text-decoration: none;
+    border-bottom: 2px solid #1DA1F2;
 }
 
 /* Detail page */
