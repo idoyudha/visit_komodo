@@ -110,6 +110,10 @@ function contribFetch(str) {
         .then(data => {
             console.log(data.filter(data => data.author == authorID))
             let filteredData = data.filter(data => data.author == authorID)
+            if (filteredData.length == 0) {
+                console.log('You have nothing!')
+                document.getElementById('contrib-result').innerHTML = `Nothing`
+            }
             let result = filteredData.map((item, index) => {
                 if (str === 'travelguide') {
                     return `<div class="card mb-3" style="background-color: transparent;">

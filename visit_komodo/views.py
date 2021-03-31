@@ -71,7 +71,7 @@ def register(request):
         
         # Attempt to create new user
         try:
-            user = User.objects.create_user(username)
+            user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
             context = {

@@ -30,6 +30,10 @@
             <button type="button" style="max-height: 30px;" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#profile-form"><i class="bi bi-gear"></i> Edit profile</button>
         </div>
     </div>
+    <div class="post">
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'add_blog' %}" role="button">Post Blog or Travel Guide</a>
+        <a class="btn btn-outline-info btn-sm" href="{% url 'add_listing' %}" role="button">Post place, food, or events</a>
+    </div>
     <h3 class="text-center">Contributions</h3>
     <nav class="contribution-nav d-flex flex-row my-4">
         <a role="button" id="contrib-destination" class="contrib-menu text-center" aria-pressed="true" aria-selected="true" onclick="contrib('destination')"><div class="contribution-destination">Destination</div></a>
@@ -39,7 +43,7 @@
     </nav>
 
     <div id="contrib-result">
-        <p>result</p>
+    
     </div>
 </div>
 
