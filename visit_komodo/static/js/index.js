@@ -80,7 +80,23 @@ function wishlistFetch(url, id) {
         .catch(error => console.log(error))
 }
 
+function reset() {
+    document.getElementById('contrib-destination').style.backgroundColor = 'transparent'
+    document.getElementById('contrib-food').style.backgroundColor = 'transparent'
+    document.getElementById('contrib-event').style.backgroundColor = 'transparent'
+    document.getElementById('contrib-travelguide').style.backgroundColor = 'transparent'
+    document.getElementById(`contrib-destination`).style.borderBottom = 'none'
+    document.getElementById(`contrib-food`).style.borderBottom = 'none'
+    document.getElementById('contrib-event').style.borderBottom = 'none'
+    document.getElementById(`contrib-travelguide`).style.borderBottom = 'none'
+    document.querySelector(`.contribution-destination`).style.color = '#ddd'
+    document.querySelector(`.contribution-food`).style.color = '#ddd'
+    document.querySelector(`.contribution-event`).style.color = '#ddd'
+    document.querySelector(`.contribution-travelguide`).style.color = '#ddd'
+}
+
 function contrib(str) {
+    reset()
     if (str == 'destination') {
         console.log('Found destination')
         contribFetch(str)
@@ -104,7 +120,9 @@ function contrib(str) {
 
 function contribFetch(str) {
     let authorID = document.getElementById('userId').textContent
-    // document.getElementById(`contrib-${str}`).style.backgroundColor = 'rgba(13, 185, 248, 0.1)'
+    document.getElementById(`contrib-${str}`).style.backgroundColor = 'rgba(13, 185, 248, 0.1)'
+    document.getElementById(`contrib-${str}`).style.borderBottom = '2px solid #1DA1F2'
+    document.querySelector(`.contribution-${str}`).style.color = '#1DA1F2'
     fetch(`/${str}_api`)
         .then(response => response.json())
         .then(data => {

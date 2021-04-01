@@ -160,38 +160,6 @@ footer {
     z-index: -1;
 }
 
-.profile-main {
-    position: relative;
-    background-color: rgba(25, 42, 86, 0.9);
-    margin: -35px auto 0 auto;
-    width: 1280px;
-    padding: 20px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-.profile-content {
-    position: relative;
-    margin: 5vh auto;
-    width: 1280px;
-    height: 100%;
-}
-
-#intro, #share {
-    padding: 15px;
-    background-color: rgba(25, 42, 86, 0.9);
-    width: 90%;
-    margin-bottom: 25px;
-}
-
-#activity {
-    width: 100%;
-    background-color: rgba(25, 42, 86, 0.9);
-    padding: 15px;
-}
-
-
-
 .col-8>h4 {
     margin: 0;
     padding: 0;
