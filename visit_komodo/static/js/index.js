@@ -55,7 +55,7 @@ function wishlistFetch(url, id) {
                 })
                 .then(response => response.json())
                 .then(message => console.log('Remove from wishlist', message))
-                document.getElementById('wishlist').className = 'btn btn-danger'
+                document.getElementById('wishlist').className = 'btn btn-primary'
                 document.getElementById('wishlist').textContent = 'Add to wishlist'
                 document.getElementById('totalWishlist').textContent = `${wishlist.length - 1}`
             }
@@ -80,7 +80,7 @@ function wishlistFetch(url, id) {
         .catch(error => console.log(error))
 }
 
-function reset() {
+function resetNav() {
     document.getElementById('contrib-destination').style.backgroundColor = 'transparent'
     document.getElementById('contrib-food').style.backgroundColor = 'transparent'
     document.getElementById('contrib-event').style.backgroundColor = 'transparent'
@@ -96,7 +96,7 @@ function reset() {
 }
 
 function contrib(str) {
-    reset()
+    resetNav()
     if (str == 'destination') {
         console.log('Found destination')
         contribFetch(str)
@@ -143,7 +143,7 @@ function contribFetch(str) {
                                     <h3 class="mb-0">${item.title}</h3>
                                     <div class="mb-1 text-muted">Last updated ${item.date_created}</div>
                                     <p class="card-text mb-auto">${item.short_description}</p>
-                                    <a href="view_${str}/${item.title}" class="stretched-link">Continue reading</a>
+                                    <a href="view_${str}/${item.title}">Continue reading</a>
                                 </div>
                                 </div>
                             </div>`
@@ -158,7 +158,7 @@ function contribFetch(str) {
                                     <h3 class="mb-0">${item.title}</h3>
                                     <div class="mb-1 text-muted">Last updated ${item.date_created}</div>
                                     <p class="card-text mb-auto">${item.description}</p>
-                                    <a href="view_${str}/${item.title}" class="stretched-link">Continue reading</a>
+                                    <a href="view_${str}/${item.title}">Continue reading</a>
                                 </div>
                                 </div>
                             </div>`

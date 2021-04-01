@@ -26,6 +26,9 @@ urlpatterns = [
     path('add_listing', views.add_listing, name='add_listing'),
     path('add_blog', views.add_blog, name='add_blog'),
 
+    # delete
+    path('delete/<str:menu>/<int:id>', views.delete, name='delete'),
+
     # API routes
     # destination
     path('destination_api', views.destination_api, name='destination_api'),

@@ -24,12 +24,20 @@
                         {% if request.user in data.wishlist.all %}
                             <button type="button" id="wishlist" class="btn btn-warning" onclick="addtoWishlist({{ data.id }})">Remove from wishlist</button>
                         {% else %}
-                            <button type="button" id="wishlist" class="btn btn-danger" onclick="addtoWishlist({{ data.id }})">Add to wishlist</button>  
+                            <button type="button" id="wishlist" class="btn btn-primary" onclick="addtoWishlist({{ data.id }})">Add to wishlist</button>  
                         {% endif %}
                         <p>Total wishlist: <span id="totalWishlist">{{ data.wishlist.count }}</span></p>
                     {% endfor %}
                 {% endif %}
             </div>
+            {% for data in destination %}
+            {% if request.user == data.author %}
+                <div class="mt-4 d-sm-flex flex-row-reverse">
+                    <button type="button" class="btn btn-danger btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div><hr>
     <h4 class="head-sub">Related destination</h4>
@@ -48,5 +56,26 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="deleteModalLabel">Delete confitmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
+            Your contribution will be delete forever after this action
+        </div>
+        <div class="modal-footer">
+            {% for data in destination %}
+                <a role="button" href="{% url 'delete' menu=destination_menu id=data.id %}" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            {% endfor %}    
+        </div>
+      </div>
+    </div>
+</div
 
 {% endblock %}

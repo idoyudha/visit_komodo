@@ -14,7 +14,7 @@
     
     <title>Visit Komodo</title>
 </head>
-<body style="background-color: #232323;">
+<body style="background-color: #232323;" onload="contrib('destination')">
 
   <!-- Navbar -->
   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 text-white" style="background-color: #090909;">
@@ -32,9 +32,6 @@
           <li><a href="{% url 'travel_guide' %}" class="nav-link px-2 text-white">Travel Guide</a></li>
         </ul>
   
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="Search...">
-        </form>
         {% if user.is_authenticated %}
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

@@ -83,6 +83,7 @@ def register(request):
     else:
         return render(request, "visit_komodo/register.html")
 
+
 # Sub menu from index
 def destination(request):
     destination = Destination.objects.all()[:5]
@@ -121,7 +122,8 @@ def view_destination(request, title):
     all = Destination.objects.exclude(title=title)[:5]
     context = {
         "destination": destination,
-        "all": all
+        "all": all,
+        "destination_menu": 'destination'
     }
     return render(request, "visit_komodo/detail_page/destination.html", context)
 
@@ -130,7 +132,8 @@ def view_food(request, title):
     all = Food.objects.exclude(title=title)[:5]
     context = {
         "food": food,
-        "all": all
+        "all": all,
+        "food_menu": 'food'
     }
     return render(request, "visit_komodo/detail_page/food.html", context)
 
@@ -139,7 +142,8 @@ def view_event(request, title):
     all = Event.objects.exclude(title=title)[:5]
     context = {
         "event": event,
-        "all": all
+        "all": all,
+        "event_menu": 'event'
     }
     return render(request, "visit_komodo/detail_page/event.html", context)
 
@@ -148,10 +152,22 @@ def view_travelguide(request, title):
     all = Blog.objects.exclude(title=title)[:5]
     context = {
         "travel": travel,
-        "all": all
+        "all": all,
+        "travel_menu": 'travel'
     }
     return render(request, "visit_komodo/detail_page/travel_guide.html", context)
 
+@login_required(login_url='/login/')
+def delete(request, menu, id):
+    if (menu == "destination"):
+        Destination.objects.filter(id=id).delete()
+    elif (menu == "food"):
+        Food.objects.filter(id=id).delete()
+    elif (menu == "event"):
+        Event.objects.filter(id=id).delete()
+    elif (menu == "travel"):
+        Blog.objects.filter(id=id).delete()
+    return HttpResponseRedirect('/')
 
 @login_required(login_url='/login/')
 @csrf_exempt
