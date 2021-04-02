@@ -10,6 +10,10 @@
 
 }
 
+a:link {
+    text-decoration: none;
+}
+
 .container, .container-lg {
     color: #ddd;
 }
@@ -26,13 +30,15 @@ body {
 }
 
 .carousel-item > img {
-    height: 400px;
+    height: 679px;
     object-fit: cover;
 }
 
 .display-4 {
     font-weight: 900;
     color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
 }
 
 
@@ -77,6 +83,27 @@ a {
     border-radius: 5px;
 }
 
+.image {
+    position: relative;
+}
+
+.img-between {
+    max-height: 350px; 
+    width: 100%; 
+    object-fit: cover;
+    margin: 50px 0;
+    z-index: -1;
+}
+
+.image > h1 {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 20px;
+    font-weight: 800;
+    padding: 10px 50px 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
 
 /* Footer */
 footer {
@@ -110,6 +137,11 @@ footer {
 
 .font-red {
     color: #EA2027;
+    font-size: 50px;
+}
+
+.font-white {
+    color: white;
 }
 /* Add Listing Page */
 

@@ -3,10 +3,52 @@
 {% load humanize %}
 
 {% block body %}
-  <!-- Grid Cards -->
-  <!-- Popular Destination -->
-  <div class="container-lg" style="margin-top: 40px;">
-    <h3 style="margin-bottom: 15px;"><span class="font-red">Popular Destination</h3>
+
+<!-- Carousel -->
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="https://miro.medium.com/max/3840/1*GXy_n2etfjQUZRv_8S49Zg.jpeg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+          <div class="jumbotron jumbotron-fluid bg-transparent">
+              <div class="container">
+                <h1 class="display-4">VISIT KOMODO</h1>
+              </div>
+          </div>
+      </div>
+    </div>
+    {% for data in destination %}
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="{{ data.image_url }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+          <div class="jumbotron jumbotron-fluid bg-transparent">
+              <div class="container">
+                  <h1 class="display-4">{{ data.title }}</h1>
+              </div>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" data-bs-target="#carouselExampleDark"  data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Grid Cards -->
+<!-- Popular Destination -->
+<div class="container-lg" style="margin-top: 40px;">
+    <h3 style="margin-bottom: 15px;"><span class="font-red">Popular <span class="font-white">Destination</span></h3>
     
     <div class="row row-cols-1 row-cols-md-5 g-6">
       {% for data in destination %}
@@ -22,15 +64,20 @@
         </div>
       {% endfor %}
     </div>
-    <div class="float-end"><a href="{% url 'destination' %}">See all</a></div>
-  </div>
-  
-  <!-- Top List -->
-  <div class="container-lg" style="margin-top: 50px;">
+    <div class="float-end"><a href="{% url 'destination' %}">View all<i class="bi bi-arrow-right-square mx-2"></i></a></div>
+</div>
+
+<div class="image">
+  <img src="https://www.fodors.com/wp-content/uploads/2019/04/TraditionalfoodsinJava__HERO_shutterstock_1161085942.jpg" alt="..." class="img-between">
+  <h1>Disover your food heaven</h1>
+</div>
+
+<!-- Top List -->
+<div class="container-lg" style="margin-top: 50px;">
     <div class="row">
       <!-- Top Food -->
       <div class="col-sm">
-        <h3 style="margin-bottom: 15px;">Food Choices</h3>
+        <h3 style="margin-bottom: 15px;"><span class="font-red">Food <span class="font-white">Choices</span></h3>
 
         {% for data in food %}
         <div class="card mb-3">
@@ -38,25 +85,25 @@
             <div class="col-md-4 d-none d-md-block">
               <img class="card-img" src="{{ data.image_url }}" alt="food" height="100%" style="object-fit: cover;">
             </div>
-            <div class="col-md-8 p-4">
+            <div class="col-md-8 p-1">
                 <h3 class="mb-0">{{ data.title }}</h3>
                 <div class="mb-1 text-muted">Last updated {{ data.date_created | naturalday }}</div>
                 <p class="card-text mb-auto">{{ data.description }}</p>
-                <a href="{% url 'view_food' data.title %}" class="stretched-link">Continue reading</a>
+                <a href="{% url 'view_food' data.title %}" class="stretched-link">Continue reading<i class="bi bi-arrow-right mx-2"></i></a>
             </div>
           </div>
         </div>
         {% endfor %}
 
         <div class="float-end">
-          <a href="{% url 'food' %}">See all</a>
+          <a href="{% url 'food' %}">View all<i class="bi bi-arrow-right-square mx-2"></i></a>
         </div>
 
       </div>
       
       <!-- Top Events -->
       <div class="col-sm">
-        <h3 style="margin-bottom: 15px;">Upcoming Events</h3>
+        <h3 style="margin-bottom: 15px;"><span class="font-red">Upcoming <span class="font-white">Events</span></h3>
 
         {% for data in event %}
         <div class="card mb-3">
@@ -64,27 +111,32 @@
             <div class="col-md-4 d-none d-md-block">
               <img class="card-img" src="{{ data.image_url }}" alt="event" height="100%" style="object-fit: cover;">
             </div>
-            <div class="col-md-8 p-4">
+            <div class="col-md-8 p-1">
                 <h3 class="mb-0">{{ data.title }}</h3>
                 <div class="mb-1 text-muted">Last updated {{ data.date_created | naturalday }}</div>
                 <p class="card-text mb-auto">{{ data.description }}</p>
-                <a href="{% url 'view_event' data.title %}" class="stretched-link">Continue reading</a>
+                <a href="{% url 'view_event' data.title %}" class="stretched-link">Continue reading<i class="bi bi-arrow-right mx-2"></i></a>
             </div>
           </div>
         </div>
         {% endfor %}
 
         <div class="float-end">
-          <a href="{% url 'event' %}">See all</a>
+          <a href="{% url 'event' %}">View all<i class="bi bi-arrow-right-square mx-2"></i></a>
         </div>
       </div>
     </div>
     
-  </div>
+</div>
 
-  <!-- Travel Guide -->
-  <div class="container-lg" style="margin-top: 40px;">
-    <h3 style="margin-bottom: 15px;">Travel Guide</h3>
+<div class="image">
+    <img src="https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5ffc6346d65604028a6132f7%2F0x0.jpg%3FcropX1%3D0%26cropX2%3D3958%26cropY1%3D429%26cropY2%3D2656" alt="..." class="img-between">
+    <h1>Prepare for everything</h1>
+</div>
+
+<!-- Travel Guide -->
+<div class="container-lg" style="margin-top: 40px;">
+    <h3 style="margin-bottom: 15px;"><span class="font-red">Travel <span class="font-white">Guide</span></h3>
     
     <div class="row row-cols-1 row-cols-md-5 g-6">
       {% for data in blog %}
@@ -96,13 +148,13 @@
           </div>
           <div class="card-body" style="padding: 0;">
             <p class="card-text">{{ data.short_description }}</p>
-            <a href="{% url 'view_travelguide' data.title %}" class="btn btn-primary btn-sm">Continue reading</a>
+            <a href="{% url 'view_travelguide' data.title %}" class="btn btn-primary btn-sm">Continue reading<i class="bi bi-arrow-right mx-2"></i></a>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
-    <div class="float-end"><a href="{% url 'travel_guide' %}">See all</a></div>
-  </div>
+    <div class="float-end"><a href="{% url 'travel_guide' %}">View all<i class="bi bi-arrow-right-square mx-2"></i></a></div>
+</div>
 
 {% endblock %}
