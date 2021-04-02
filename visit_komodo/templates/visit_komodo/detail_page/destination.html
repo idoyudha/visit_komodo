@@ -34,7 +34,7 @@
             {% if request.user == data.author %}
                 <div class="mt-4 d-sm-flex flex-row-reverse">
                     <button type="button" class="btn btn-danger btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
-                    <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                    <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                 </div>
             {% endif %}
             {% endfor %}
@@ -57,7 +57,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -76,6 +76,47 @@
         </div>
       </div>
     </div>
-</div
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="editModalLabel">Update contribution</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
+            {% for data in destination %}
+            <form action="{% url 'view_destination' data.title %}" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="mb-3">
+                        <label class="form-label text-dark" for="title">Title</label><br>
+                        <input class="form-control form-control-sm" type="text" name="title" id="title" value="{{ data.title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark" for="description">Short Description</label><br>
+                        <textarea class="form-control form-control-sm" type="text" rows="3" name="description" id="description" placeholder="Type Description">{{ data.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark" for="location">Location (Street Adress, City)</label><br>
+                        <input class="form-control form-control-sm" type="text" name="location" id="location" value="{{ data.location }}" placeholder="Type Location">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark" for="photo">URL Photo</label><br>
+                        <input class="form-control form-control-sm" type="url" name="photo" id="photo" value="{{ data.image_url }}" placeholder="Copy your url photo" required>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-end">
+                        <input type="submit" class="btn btn-info btn-sm mx-2" value="Submit">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" value="Cancel">Cancel</button>
+                    </div>
+                </fieldset>
+            </form>
+            {% endfor %}   
+        </div>
+      </div>
+    </div>
+</div>
 
 {% endblock %}

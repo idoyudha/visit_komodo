@@ -34,7 +34,6 @@
             {% if request.user == data.author %}
                 <div class="mt-4 d-sm-flex flex-row-reverse">
                     <button type="button" class="btn btn-danger btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
-                    <button type="button" class="btn btn-warning btn-sm">Edit</button>
                 </div>
             {% endif %}
             {% endfor %}
@@ -57,12 +56,12 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-dark" id="deleteModalLabel">Delete confitmation</h5>
+          <h5 class="modal-title text-dark" id="deleteModalLabel">Delete confirmation</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-dark">
@@ -76,6 +75,7 @@
         </div>
       </div>
     </div>
-</div
+</div>
+
 
 {% endblock %}

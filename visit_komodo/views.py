@@ -120,6 +120,13 @@ def view_detail(request, submenu, title): # will update this one for saving the 
 def view_destination(request, title):
     destination = Destination.objects.filter(title=title)
     all = Destination.objects.exclude(title=title)[:5]
+    if request.method == "POST":
+        title_update = request.POST["title"]
+        description = request.POST["description"]
+        location = request.POST["location"]
+        photo = request.POST["photo"]
+        Destination.objects.filter(title=title).update(title=title_update, description=description, location=location, image_url=photo)
+        return redirect("/destination")
     context = {
         "destination": destination,
         "all": all,
@@ -130,6 +137,13 @@ def view_destination(request, title):
 def view_food(request, title):
     food = Food.objects.filter(title=title)
     all = Food.objects.exclude(title=title)[:5]
+    if request.method == "POST":
+        title_update = request.POST["title"]
+        description = request.POST["description"]
+        location = request.POST["location"]
+        photo = request.POST["photo"]
+        Food.objects.filter(title=title).update(title=title_update, description=description, location=location, image_url=photo)
+        return redirect("/food")
     context = {
         "food": food,
         "all": all,
@@ -140,6 +154,13 @@ def view_food(request, title):
 def view_event(request, title):
     event = Event.objects.filter(title=title)
     all = Event.objects.exclude(title=title)[:5]
+    if request.method == "POST":
+        title_update = request.POST["title"]
+        description = request.POST["description"]
+        location = request.POST["location"]
+        photo = request.POST["photo"]
+        Event.objects.filter(title=title).update(title=title_update, description=description, location=location, image_url=photo)
+        return redirect("/event")
     context = {
         "event": event,
         "all": all,
