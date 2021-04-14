@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')ds7!^ef*$^q#ye3z1s01_(iq@!^!+2y=!dw1r^4$7pv47+l2_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['visit-komodo.herokuapp.com', '127.0.0.1']
 
