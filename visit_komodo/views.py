@@ -256,6 +256,14 @@ def profile_view(request):
         }
         return render(request, "visit_komodo/profile.html", context)
 
+def wishlist_view(request):
+    user_id = request.user.id
+    profile_data = Profile.objects.filter(id=user_id)
+    context = {
+            "profile_data": profile_data
+        }
+    return render(request, "visit_komodo/wishlist.html", context)
+
 # API routes
 # destination
 @login_required(login_url='/login/')

@@ -80,6 +80,11 @@ function wishlistFetch(url, id) {
         .catch(error => console.log(error))
 }
 
+function onLoadAllFunction() {
+    contrib('destination')
+    getWishlist('destination')
+}
+
 function resetNav() {
     document.getElementById('contrib-destination').style.backgroundColor = 'transparent'
     document.getElementById('contrib-food').style.backgroundColor = 'transparent'
@@ -98,19 +103,19 @@ function resetNav() {
 function contrib(str) {
     resetNav()
     if (str == 'destination') {
-        console.log('Found destination')
+        // console.log('Found destination')
         contribFetch(str)
     }
     else if (str == 'food') {
-        console.log('Found food')
+        // console.log('Found food')
         contribFetch(str)
     }
     else if (str == 'event') {
-        console.log('Found event')
+        // console.log('Found event')
         contribFetch(str)
     }
     else if (str == 'travelguide') {
-        console.log('Found travel guide')
+        // console.log('Found travel guide')
         contribFetch(str)
     }
     else {
@@ -128,10 +133,6 @@ function contribFetch(str) {
         .then(data => {
             console.log(data.filter(data => data.author == authorID))
             let filteredData = data.filter(data => data.author == authorID)
-            if (filteredData.length == 0) {
-                console.log('You have nothing!')
-                document.getElementById('contrib-result').innerHTML = `Nothing`
-            }
             let result = filteredData.map((item, index) => {
                 if (str === 'travelguide') {
                     return `<div class="card mb-3" style="background-color: transparent;">
@@ -165,6 +166,85 @@ function contribFetch(str) {
                 }
             })
             document.getElementById('contrib-result').innerHTML = result.join('')
+            if (filteredData.length == 0) {
+                console.log('You have nothing!')
+                document.querySelector('#contrib-result').innerHTML = ` <div class="text-center">
+                                                                            <h3>After you post, they'll show up here</h3>
+                                                                            <p>You haven't write anything yet</p>
+                                                                        </div>`
+            }
+        })
+        .catch(error => console.log(error))
+}
+
+function getWishlist(str) {
+    resetNav()
+    if (str === 'destination') {
+        userWishlist(str)
+    }
+    else if (str === 'food') {
+        userWishlist(str)
+    }
+    else if (str === 'event') {
+        userWishlist(str)
+    }
+    else if (str === 'travelguide') {
+        userWishlist(str)
+    }
+    else {
+        console.log('NOT FOUND!!')
+    }
+}
+
+function userWishlist(str) {
+    let userID = parseInt(document.getElementById('userId').textContent)
+    document.getElementById(`contrib-${str}`).style.backgroundColor = 'rgba(13, 185, 248, 0.1)'
+    document.getElementById(`contrib-${str}`).style.borderBottom = '2px solid #1DA1F2'
+    document.querySelector(`.contribution-${str}`).style.color = '#1DA1F2'
+    fetch(`/${str}_api`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.filter(data => data.wishlist.includes(userID)))
+            let filteredData = data.filter(data => data.wishlist.includes(userID))
+            let result = filteredData.map((item, index) => {
+                if (str === 'travelguide') {
+                    return `<div class="card mb-3" style="background-color: transparent;">
+                                <div class="row no-gutters">
+                                <div class="col-md-4 d-none d-md-block">
+                                    <img class="card-img" src="${item.image_url}" alt="..." height="100%" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8 p-4">
+                                    <h3 class="mb-0">${item.title}</h3>
+                                    <div class="mb-1 text-muted">Last updated ${item.date_created}</div>
+                                    <p class="card-text mb-auto">${item.short_description}</p>
+                                    <a href="view_${str}/${item.title}">Continue reading</a>
+                                </div>
+                                </div>
+                            </div>`
+                }
+                else {
+                    return `<div class="card mb-3" style="background-color: transparent;">
+                                <div class="row no-gutters">
+                                <div class="col-md-4 d-none d-md-block">
+                                    <img class="card-img" src="${item.image_url}" alt="..." height="100%" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8 p-4">
+                                    <h3 class="mb-0">${item.title}</h3>
+                                    <div class="mb-1 text-muted">Last updated ${item.date_created}</div>
+                                    <p class="card-text mb-auto">${item.description}</p>
+                                    <a href="view_${str}/${item.title}">Continue reading</a>
+                                </div>
+                                </div>
+                            </div>`
+                }
+            })
+            document.getElementById('wishlist-result').innerHTML = result.join('')
+            if (filteredData.length == 0) {
+                console.log('You have nothing!')
+                document.querySelector('#wishlist-result').innerHTML = ` <div class="text-center">
+                                                                            <h3>After you click wishlist, they'll show up here</h3>
+                                                                        </div>`
+            }
         })
         .catch(error => console.log(error))
 }

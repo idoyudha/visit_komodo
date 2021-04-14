@@ -10,6 +10,7 @@ urlpatterns = [
 
     # sub menu
     path('profile', views.profile_view, name='profile'),
+    path('wishlist', views.wishlist_view, name='wishlist'),
     path('destination', views.destination, name='destination'),
     path('food', views.food, name='food'),
     path('event', views.event, name='event'),

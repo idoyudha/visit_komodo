@@ -1,6 +1,12 @@
 {% extends "visit_komodo/layout.html" %}
 {% load static %}
 
+{% block title %}
+    {% for data in travel %}
+        {{ data.title }} | Visit Komodo
+    {% endfor %}
+{% endblock %}
+
 {% block body %}
 
 <div class="container" style="margin-top: 100px;">

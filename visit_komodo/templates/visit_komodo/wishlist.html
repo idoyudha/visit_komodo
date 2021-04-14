@@ -1,0 +1,28 @@
+{% extends "visit_komodo/layout.html" %}
+{% load static %}
+
+{% block title %} 
+  Profile | Visit Komodo
+{% endblock %}
+
+{% block body %}
+<div class="cover-photo">
+</div>
+<!-- Profile box white -->
+<div class="container-md profile-box" style="padding: 20px 30px 10px 30px;">
+    {% for data in profile_data %}
+        <h3 class="text-center"><span id="userWishlist">{{ data.username }}'s</span> Wishlist</h3>
+    {% endfor %}
+    <nav class="contribution-nav d-flex flex-row my-4">
+        <a role="button" id="contrib-destination" class="contrib-menu text-center" aria-pressed="true" aria-selected="true" onclick="getWishlist('destination')"><div class="contribution-destination">Destination</div></a>
+        <a role="button" id="contrib-food" class="contrib-menu text-center" aria-pressed="true" aria-selected="true" onclick="getWishlist('food')"><div class="contribution-food">Food</div></a>
+        <a role="button" id="contrib-event" class="contrib-menu text-center" aria-pressed="true" aria-selected="true" onclick="getWishlist('event')"><div class="contribution-event">Event</div></a>
+        <a role="button" id="contrib-travelguide" class="contrib-menu text-center" aria-pressed="true" aria-selected="true" onclick="getWishlist('travelguide')"><div class="contribution-travelguide">Travel Guide</div></a>
+    </nav>
+
+    <div id="wishlist-result">
+        
+    </div>
+</div>
+
+{% endblock %}
