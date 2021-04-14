@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')ds7!^ef*$^q#ye3z1s01_(iq@!^!+2y=!dw1r^4$7pv47+l2_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['visit-komodo.herokuapp.com', '127.0.0.1']
 
@@ -67,6 +67,27 @@ WSGI_APPLICATION = 'final_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+'''
+Steps for Django Postgresql database + AWS RDS
+1. Download and install PostgreSQL & PG Admin
+2. Login to PG Admin & Create Database
+3. Connect database to Django App & run migration
+4. Create database on AWS
+5. Connect to live AWS Database with PG admin & Django
+'''
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'komodo',
+#         'USER': 'idoyudha',
+#         'PASSWORD': 'amazon75a',
+#         'HOST': 'database-1.crpgxro0i72t.us-east-2.rds.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -74,6 +95,8 @@ DATABASES = {
     }
 }
 
+# import dj_database_url
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_USER_MODEL = "visit_komodo.User"
 
